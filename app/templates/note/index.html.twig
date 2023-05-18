@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Notes list
+{% endblock %}
+
+{% block body %}
+    <h1>Notes list</h1>
+    {% if notes is defined and notes|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Tags</th>
+                <th scope="col">
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for note in notes %}
+                <tr>
+                    <td>{{ note.id }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>&nbsp;</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            List is empty.
+        </p>
+    {% endif %}
+{% endblock  %}

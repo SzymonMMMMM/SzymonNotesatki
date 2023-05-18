@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    View note
+{% endblock %}
+
+{% block body %}
+    <h1>View note</h1>
+    {% if note is defined and note|length %}
+        <dl>
+            <dt>Title</dt>
+            <dd>{{ note.title }}</dd>
+            <dt>Content</dt>
+            <dd>{{ note.content }}</dd>
+        </dl>
+    {% else %}
+        <p>
+            Note not found.
+        </p>
+    {% endif %}
+{% endblock %}
