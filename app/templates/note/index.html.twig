@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Notes list
+    {{ 'title.note_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>Notes list</h1>
+    <h1>{{ 'title.note_list'|trans }}</h1>
     {% if notes is defined and notes|length %}
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Tags</th>
+                <th>{{ 'label.id'|trans }}</th>
+                <th>{{ 'label.title'|trans }}</th>
+                <th>{{ 'label.content'|trans }}</th>
                 <th scope="col">
-                    Actions
+                    {{ 'label.actions'|trans }}
                 </th>
             </tr>
             </thead>
@@ -23,14 +23,19 @@
                 <tr>
                     <td>{{ note.id }}</td>
                     <td>{{ note.title }}</td>
-                    <td>&nbsp;</td>
+                    <td>{{ note.content }}</td>
+                    <td>
+                        <a href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                        </t
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     {% else %}
         <p>
-            List is empty.
+            {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
 {% endblock  %}

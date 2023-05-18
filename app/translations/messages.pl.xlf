@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Akcje</target>
+            </trans-unit>
+            <trans-unit id="label.id">
+                <source>label.id</source>
+                <target>Id</target>
+            </trans-unit>
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>Tytuł</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Zawartość</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>Lista jest pusta.</target>
+            </trans-unit>
+            <trans-unit id="message.note_not_found">
+                <source>message.note_not_found</source>
+                <target>Notatka nie znaleziona.</target>
+            </trans-unit>
+            <trans-unit id="title.note_list">
+                <source>title.note_list</source>
+                <target>Lista notatek</target>
+            </trans-unit>
+            <trans-unit id="title.note_view">
+                <source>title.note_view</source>
+                <target>Widok notatki #%id%</target>
+            </trans-unit>
+            <trans-unit id="action.view">
+                <source>action.view</source>
+                <target>Zobacz</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
