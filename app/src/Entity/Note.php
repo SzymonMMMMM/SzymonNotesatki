@@ -4,7 +4,12 @@ namespace App\Entity;
 
 use App\Repository\NoteRepository;
 use Doctrine\DBAL\Types\Types;
+use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Note.
@@ -19,6 +24,7 @@ class Note
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;

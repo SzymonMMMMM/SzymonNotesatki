@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.note_details'|trans({'%id%': notes.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.note_details'|trans({'%id%': notes.id|default('')}) }}</h1>
+    {% if notes is defined and notes|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ notes.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ notes.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ notes.updatedAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  notes.title }}</dd>
+            <dt>{{ 'label.content'|trans }}</dt>
+            <dd>{{  notes.content }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('note_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
