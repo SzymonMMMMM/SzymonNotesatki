@@ -5,42 +5,66 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
+use App\Entity\Enum\NoteStatus;
 use App\Entity\Note;
+use App\Entity\User;
 use DateTimeImmutable;
-use Faker\Factory;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
 /**
  * Class NoteFixtures.
  */
-class NoteFixtures extends AbstractBaseFixtures
+class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
      *
+     * @psalm-suppress PossiblyNullPropertyFetch
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-
-        $connection = $this->manager->getConnection();
-        $connection->beginTransaction();
-        $platform = $connection->getDatabasePlatform();
-        $connection->executeStatement($platform->getTruncateTableSQL('notes', true));
-        $connection->executeStatement('ALTER TABLE notes AUTO_INCREMENT = 1;');
-
-        for ($i = 0; $i < 10; ++$i) {
-            $note = new Note();
-            $note->setTitle($this->generateRandomTitle());
-            $note->setContent($this->faker->sentences(4, true));
-            $note->setCreatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
-            );
-            $note->setUpdatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
-            );
-            $this->manager->persist($note);
+        if (null === $this->manager || null === $this->faker) {
+            return;
         }
 
+        $this->createMany(100, 'notes', function (int $i) {
+            $note = new Note();
+            $note->setTitle($this->faker->sentence);
+            $note->setContent($this->faker->sentences(4, true));
+            $note->setCreatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $note->setUpdatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            /** @var Category $category */
+            $category = $this->getRandomReference('categories');
+            $note->setCategory($category);
+
+            return $note;
+        });
+
         $this->manager->flush();
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: CategoryFixtures::class}
+     */
+    public function getDependencies(): array
+    {
+        return [CategoryFixtures::class];
     }
 
     /**

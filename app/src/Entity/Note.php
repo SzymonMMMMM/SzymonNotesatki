@@ -67,7 +67,21 @@ class Note
      * @var string|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 65535)]
     private ?string $content = null;
+
+
+    /**
+     * Category.
+     *
+     * @var Category
+     */
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[Assert\Type(Category::class)]
+    #[Assert\NotBlank]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
 
     /**
      * Getter for Id.
@@ -163,6 +177,18 @@ class Note
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

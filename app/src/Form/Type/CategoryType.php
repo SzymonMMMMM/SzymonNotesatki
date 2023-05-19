@@ -1,22 +1,20 @@
 <?php
 /**
- * Note type.
+ * Category type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Note;
 use App\Entity\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class NoteType.
+ * Class CategoryType.
  */
-class NoteType extends AbstractType
+class CategoryType extends AbstractType
 {
     /**
      * Builds the form.
@@ -37,26 +35,8 @@ class NoteType extends AbstractType
             [
                 'label' => 'label.title',
                 'required' => true,
-                'attr' => ['max_length' => 255],
+                'attr' => ['max_length' => 64],
             ]);
-        $builder->add('content', TextType::class,
-            [
-                'label' => 'Content',
-                'attr' => ['maxlength' => 65535],
-            ]);
-        $builder->add(
-            'category',
-            EntityType::class,
-            [
-                'class' => Category::class,
-                'choice_label' => function ($category): string {
-                    return $category->getTitle();
-                },
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
-                'required' => true,
-            ]
-        );
     }
 
     /**
@@ -66,7 +46,7 @@ class NoteType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Note::class]);
+        $resolver->setDefaults(['data_class' => Category::class]);
     }
 
     /**
@@ -79,6 +59,8 @@ class NoteType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'note';
+        return 'category';
     }
 }
+
+
