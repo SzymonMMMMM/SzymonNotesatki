@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Note entity.
+ */
 namespace App\Entity;
 
 use App\Repository\NoteRepository;
@@ -13,41 +15,85 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Note.
- *
- * @psalm-suppress MissingConstructor
  */
 #[ORM\Entity(repositoryClass: NoteRepository::class)]
 #[ORM\Table(name: 'notes')]
 class Note
 {
+    /**
+     * Primary key.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-
-    #[ORM\Column]
+    /**
+     * Created at.
+     *
+     * @var DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    /**
+     * Updated at.
+     *
+     * @var DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * Title.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 255)]
     private ?string $title = null;
 
+    /**
+     * Title.
+     *
+     * @var string|null
+     */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    /**
+     * Getter for Id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for created at.
+     *
+     * @return DateTimeImmutable|null Created at
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Setter for created at.
+     *
+     * @param DateTimeImmutable $createdAt Created at
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -55,11 +101,21 @@ class Note
         return $this;
     }
 
+    /**
+     * Getter for updated at.
+     *
+     * @return DateTimeImmutable|null Updated at
+     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
+    /**
+     * Setter for updated at.
+     *
+     * @param DateTimeImmutable $updatedAt Updated at
+     */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -67,11 +123,21 @@ class Note
         return $this;
     }
 
+    /**
+     * Getter for title.
+     *
+     * @return string|null Title
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     *
+     * @param string $title Title
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -79,11 +145,21 @@ class Note
         return $this;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return Content|null Content
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param Content|null $content Content
+     */
     public function setContent(?string $content): self
     {
         $this->content = $content;

@@ -40,22 +40,21 @@ class NoteRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
-    public function save(Note $entity, bool $flush = false): void
+    public function save(Note $note): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($note);
+        $this->_em->flush();
     }
 
-    public function remove(Note $entity, bool $flush = false): void
+    /**
+     * Delete entity.
+     *
+     * @param Note $note Note entity
+     */
+    public function delete(Note $note): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($note);
+        $this->_em->flush();
     }
 
     /**
@@ -80,29 +79,4 @@ class NoteRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('notes');
     }
-
-//    /**
-//     * @return Note[] Returns an array of Note objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Note
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
