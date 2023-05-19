@@ -22,6 +22,18 @@
                 <source>label.tags</source>
                 <target>Tagi</target>
             </trans-unit>
+            <trans-unit id="label.notes">
+                <source>label.notes</source>
+                <target>Notatki</target>
+            </trans-unit>
+            <trans-unit id="label.to-do_list">
+                <source>label.to-do_list</source>
+                <target>Listy zadań</target>
+            </trans-unit>
+            <trans-unit id="label.category_manager">
+                <source>label.category_manager</source>
+                <target>Menadżer kategorii</target>
+            </trans-unit>
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
                 <target>Lista jest pusta.</target>
