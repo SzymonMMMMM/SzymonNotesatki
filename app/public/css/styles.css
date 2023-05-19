@@ -26,7 +26,7 @@
     border: 2px solid #777;
     margin: 0;
     flex-flow: wrap;
-    width: 440px;
+    width: 410px;
     float: right;
 }
 
@@ -87,12 +87,12 @@
 
 .tw-toggle input[value="true"]:checked ~ span {
     background: #27ae60;
-    left: 303px;
+    left: 267px;
 }
 
 .tw-toggle input[value="-1"]:checked ~ span {
     background: #444;
-    left: 153px;
+    left: 137px;
 }
 
 .tw-toggle input[value="false"]:checked + label,
