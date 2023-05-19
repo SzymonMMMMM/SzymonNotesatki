@@ -20,6 +20,11 @@ framework:
     php_errors:
         log: true
 
+
+sensio_framework_extra:
+    router:
+        annotations: false
+
 when@test:
     framework:
         test: true
