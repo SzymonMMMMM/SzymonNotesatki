@@ -54,6 +54,14 @@
                 <source>action.view</source>
                 <target>Zobacz</target>
             </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

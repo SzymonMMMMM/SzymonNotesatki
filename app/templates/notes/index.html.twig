@@ -36,9 +36,15 @@
                     <td>{{ note.title }}</td>
                     <td>{{ note.content }}</td>
                     <td>{{ note.category.title }}</td>
-                    <td>
+                    <td  class="action-links">
                         <a href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
+                        </a>
+                        <a href="{{ url('note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('note_delete', {id: note.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

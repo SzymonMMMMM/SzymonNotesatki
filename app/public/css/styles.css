@@ -103,3 +103,12 @@
 .tw-toggle input[value="-1"]:checked + label {
     color: #fff;
 }
+/* Actions */
+.action-links {
+    gap: 10px;
+    width: 210px;
+    justify-content: flex-end;}
+
+.action-links a {
+    padding: 5px;
+}
