@@ -112,9 +112,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      * If you return null, the current request will continue, and the user
      * will be authenticated. This makes sense, for example, with an API.
      *
-     * @param Request        $request      HTTP request
-     * @param TokenInterface $token        Token
-     * @param string         $firewallName Firewall name
+     * @param Request $request HTTP request
+     * @param TokenInterface $token Token
+     * @param string $firewallName Firewall name
      *
      * @return Response|null HTTP response
      *
@@ -140,4 +140,5 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
 }

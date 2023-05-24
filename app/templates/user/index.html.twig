@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block email %}
+    {{ 'email.user_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% include 'default/_three_way_toggle_button.html.twig' with {
+        toggle_position: 'users_position',
+    }%}
+    <h1>{{ 'user.user_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'users.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'users.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.roles'|trans, 'users.roles') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    <td  class="action-links">
+                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                        <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'default/_add_button.html.twig' with {
+            name_create: url('user_create')
+        } %}
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock  %}

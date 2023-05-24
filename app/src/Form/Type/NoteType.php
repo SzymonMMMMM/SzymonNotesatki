@@ -41,7 +41,7 @@ class NoteType extends AbstractType
             ]);
         $builder->add('content', TextType::class,
             [
-                'label' => 'Content',
+                'label' => 'label.content',
                 'attr' => ['maxlength' => 65535],
             ]);
         $builder->add(

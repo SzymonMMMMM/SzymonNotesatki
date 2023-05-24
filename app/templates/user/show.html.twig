@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_details'|trans({'%id%': users.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_details'|trans({'%id%': users.id|default('')}) }}</h1>
+    {% if users is defined and users|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ users.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ users.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ users.updatedAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  users.title }}</dd>
+            <dt>{{ 'label.content'|trans }}</dt>
+            <dd>{{  users.content }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('user_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
