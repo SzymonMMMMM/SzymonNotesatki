@@ -57,6 +57,7 @@ class TodoItem
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
+
     #[Gedmo\Timestampable(on: 'update')]
     private ?DateTimeImmutable $updatedAt;
 
@@ -105,7 +106,7 @@ class TodoItem
      *
      * @return DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -154,7 +155,7 @@ class TodoItem
     /**
      * Setter for competed.
      *
-     * @param bool $completed The completion status of the todoItem
+     * @param bool $completed The completion status of the todoitem
      */
     public function setCompleted(bool $completed): void
     {

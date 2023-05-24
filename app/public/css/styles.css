@@ -112,3 +112,7 @@
 .action-links a {
     padding: 5px;
 }
+
+.completed {
+    text-decoration: line-through;
+}

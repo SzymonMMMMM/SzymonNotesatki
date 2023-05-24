@@ -4,8 +4,17 @@ namespace App\Repository;
 
 use App\Entity\TodoItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
+
+
+
 
 /**
  * @extends ServiceEntityRepository<TodoItem>
@@ -14,8 +23,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method TodoItem|null findOneBy(array $criteria, array $orderBy = null)
  * @method TodoItem[]    findAll()
  * @method TodoItem[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- *
- * @extends ServiceEntityRepository<TodoItem>
  */
 class TodoItemRepository extends ServiceEntityRepository
 {
@@ -40,6 +47,31 @@ class TodoItemRepository extends ServiceEntityRepository
         parent::__construct($registry, TodoItem::class);
     }
 
+
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('todoitem')
+            ->orderBy('todoitem.title', 'ASC');
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('todoitem');
+    }
+
     /**
      * Save entity.
      *
@@ -60,6 +92,4 @@ class TodoItemRepository extends ServiceEntityRepository
         $this->_em->remove($todoItem);
         $this->_em->flush();
     }
-
-
 }

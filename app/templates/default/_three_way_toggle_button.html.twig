@@ -10,9 +10,8 @@ parameters:
     <input  {% if toggle_position == 'notes_position' %}checked{% endif %}
             type="radio" name="toggle" value="false" onclick="location.href='{{ url('note_index') }}';">
     <label class="toggle toggle-yes">{{ 'label.notes'|trans }}</label>
-    <!-- TODO kiedy zrobie todo CRUD prosze wlozyc-->
-    <input
-            type="radio" name="toggle" value="-1" onclick="location.href='{{ url('note_index') }}';">
+    <input  {% if toggle_position == 'todoitem_position' %}checked{% endif %}
+            type="radio" name="toggle" value="-1" onclick="location.href='{{ url('todoitem_index') }}';">
     <label class="toggle toggle-yes">{{ 'label.to-do_list'|trans }}</label>
     <input  {% if toggle_position == 'category_position' %}checked{% endif %}
             type="radio" name="toggle" value="true" onclick="location.href='{{ url('category_index') }}';">

@@ -8,6 +8,7 @@ namespace App\Form\Type;
 use App\Entity\TodoItem;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -29,14 +30,23 @@ class TodoItemType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
+        $builder
+            ->add(
             'title',
             TextType::class,
             [
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
+        if ($options['is_edit']) {
+            $builder
+                ->add('completed', CheckboxType::class, [
+                    'label' => 'label.completed',
+                    'required' => false,
+                ]);
+        }
     }
 
     /**
@@ -46,9 +56,12 @@ class TodoItemType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => TodoItem::class]);
+        $resolver->setDefaults([
+            'data_class' => todoItem::class,
+            'is_edit' => false,
+        ]);
+        $resolver->setAllowedTypes('is_edit', 'bool');
     }
-
     /**
      * Returns the prefix of the template block name for this type.
      *
@@ -59,7 +72,7 @@ class TodoItemType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'todoItem';
+        return 'todoitem';
     }
 }
 

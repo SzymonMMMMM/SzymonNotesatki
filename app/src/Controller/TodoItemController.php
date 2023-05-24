@@ -61,7 +61,7 @@ class TodoItemController extends AbstractController
             $request->query->getInt('page', 1)
         );
 
-        return $this->render('todoItem/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('todoitem/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -79,7 +79,7 @@ class TodoItemController extends AbstractController
     )]
     public function show(TodoItem $todoItem): Response
     {
-        return $this->render('todoitem/show.html.twig', ['todoItem' => $todoItem]);
+        return $this->render('todoitem/show.html.twig', ['todoitem' => $todoItem]);
     }
 
     /**
@@ -136,6 +136,8 @@ class TodoItemController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('todoitem_edit', ['id' => $todoItem->getId()]),
+                'is_edit' => true,
+
             ]
         );
         $form->handleRequest($request);
@@ -155,7 +157,7 @@ class TodoItemController extends AbstractController
             'todoitem/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'todoItem' => $todoItem,
+                'todoitem' => $todoItem,
             ]
         );
     }
@@ -197,7 +199,7 @@ class TodoItemController extends AbstractController
             'todoitem/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'todoItem' => $todoItem,
+                'todoitem' => $todoItem,
             ]
         );
     }
