@@ -179,7 +179,7 @@ class TodoItemController extends AbstractController
             $todoItem,
             [
                 'method' => 'DELETE',
-                'action' => $this->generateUrl('todoItem_delete', ['id' => $todoItem->getId()]),
+                'action' => $this->generateUrl('todoitem_delete', ['id' => $todoItem->getId()]),
             ]
         );
         $form->handleRequest($request);
