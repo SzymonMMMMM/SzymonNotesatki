@@ -72,4 +72,5 @@ class TodoItemService implements TodoItemServiceInterface
 
         $this->todoItemRepository->delete($todoItem);
     }
+
 }

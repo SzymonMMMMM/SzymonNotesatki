@@ -40,6 +40,12 @@ class NoteRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+
+    /**
+     * Save entity.
+     *
+     * @param Note $note Note entity
+     */
     public function save(Note $note): void
     {
         $this->_em->persist($note);
