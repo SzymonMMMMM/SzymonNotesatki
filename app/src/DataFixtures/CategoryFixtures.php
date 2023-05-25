@@ -23,10 +23,14 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
+        /** TODO moze jakies ladniejsze purgowanie */
+
         $connection = $this->manager->getConnection();
         $connection->beginTransaction();
+        $connection->exec('SET FOREIGN_KEY_CHECKS = 0');
         $connection->executeStatement('TRUNCATE TABLE notes');
-        $connection->executeStatement('ALTER TABLE category AUTO_INCREMENT = 1');
+        $connection->exec('SET FOREIGN_KEY_CHECKS = 1');
+        //$connection->executeStatement('ALTER TABLE category AUTO_INCREMENT = 1');
 
         $this->createMany(20, 'categories', function (int $i) {
             $category = new Category();
