@@ -82,6 +82,54 @@
                 <source>action.logout</source>
                 <target>Wyloguj się</target>
             </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="title.note_create">
+                <source>title.note_create</source>
+                <target>Nowa notatka</target>
+            </trans-unit>
+            <trans-unit id="title.todoitem_list">
+                <source>title.todoitem_list</source>
+                <target>Lista zadań do zrobienia</target>
+            </trans-unit>
+            <trans-unit id="label.completed">
+                <source>label.completed</source>
+                <target>Ukończone</target>
+            </trans-unit>
+            <trans-unit id="title.category_list">
+                <source>title.category_list</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="message.record_not_found">
+                <source>message.record_not_found</source>
+                <target>Nie znaleziono rekordu</target>
+            </trans-unit>
+            <trans-unit id="title.note_details">
+                <source>title.note_details</source>
+                <target>Notatka #%id%</target>
+            </trans-unit>
+            <trans-unit id="title.note_edit ">
+                <source>title.note_edit</source>
+                <target>Edycja notatki #%id%</target>
+            </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>Brak wyników</target>
+            </trans-unit>
+            <trans-unit id="title.note_delete">
+                <source>title.note_delete</source>
+                <target>Usuń notatkę</target>
+            </trans-unit>
+            <trans-unit id="title.todoItem_details">
+                <source>title.todoItem_details</source>
+                <target>Detale zadania #%id%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
