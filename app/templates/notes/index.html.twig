@@ -23,6 +23,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'notes.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'notes.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'notes.content') }}</th>
+                <th>{{ 'label.tag'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -35,15 +36,22 @@
                     <td>{{ note.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ note.title }}</td>
                     <td>{{ note.content }}</td>
+                    <td>
+                        {% if note.tags and note.tags|length %}
+                            {% for tag in note.tags %}
+                                {{ tag.title }}
+                            {% endfor %}
+                        {% endif %}
+                    </td>
                     <td>{{ note.category.title }}</td>
                     <td  class="action-links">
-                        <a href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.view'|trans }}">
+                        <a class="btn btn-outline-primary" href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
-                        <a href="{{ url('note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
+                        <a class="btn btn-outline-success" href="{{ url('note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
-                        <a href="{{ url('note_delete', {id: note.id}) }}" title="{{ 'action.delete'|trans }}">
+                        <a class="btn btn-outline-danger" href="{{ url('note_delete', {id: note.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
                     </td>

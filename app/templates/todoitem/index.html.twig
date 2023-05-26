@@ -36,13 +36,13 @@
                         <input class="form-check-input" type="checkbox" {% if todoitem.completed %}checked{% endif %} disabled class="green-checkbox">
                     </td>
                     <td  class="action-links">
-                        <a href="{{ url('todoitem_show', {id: todoitem.id}) }}" title="{{ 'action.view'|trans }}">
+                        <a class="btn btn-outline-primary" href="{{ url('todoitem_show', {id: todoitem.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
-                        <a href="{{ url('todoitem_edit', {id: todoitem.id}) }}" title="{{ 'action.edit'|trans }}">
+                        <a class="btn btn-outline-success" href="{{ url('todoitem_edit', {id: todoitem.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
-                        <a href="{{ url('todoitem_delete', {id: todoitem.id}) }}" title="{{ 'action.delete'|trans }}">
+                        <a class="btn btn-outline-danger" href="{{ url('todoitem_delete', {id: todoitem.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
                     </td>

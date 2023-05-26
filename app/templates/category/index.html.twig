@@ -28,13 +28,13 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td  class="action-links">
-                            <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view'|trans }}">
+                            <a class="btn btn-outline-primary" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view'|trans }}">
                                 {{ 'action.view'|trans }}
                             </a>
-                            <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
+                            <a class="btn btn-outline-success" href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
                                 {{ 'action.edit'|trans }}
                             </a>
-                            <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
+                            <a class="btn btn-outline-danger" href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
                                 {{ 'action.delete'|trans }}
                             </a>
                     </td>
