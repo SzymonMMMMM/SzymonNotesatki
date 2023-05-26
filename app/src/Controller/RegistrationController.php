@@ -3,37 +3,67 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\Type\RegistrationFormType;
+
 use App\Security\LoginFormAuthenticator;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use App\Service\UserServiceInterface;
+use App\Form\Type\UserType;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+
 
 class RegistrationController extends AbstractController
 {
+
+    /**
+     * User service.
+     */
+    private UserServiceInterface $userService;
+
+    /**
+     * Translator
+     *
+     * @var TranslatorInterface $translator;
+     */
+    private TranslatorInterface $translator;
+
+    /**
+     * Constructor.
+     *
+     * @param UserServiceInterface $userService User service
+     * @param TranslatorInterface $translator Translator
+     */
+    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
+    {
+        $this->userService = $userService;
+        $this->translator = $translator;
+    }
+    /** TODO ulepszyc automatyczny register wyciagnac autowiring i niech sam request bedzie*/
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+            /** TODO czy da sie mniej dla password i dla role */
+            $password = $form->get('password')->getData();
+            $this->userService->passwordHasher($user, $password);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
+            $user->setRoles(['ROLE_USER']);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.registered_successfully')
+            );
+            $this->userService->save($user);
 
             return $userAuthenticator->authenticateUser(
                 $user,
@@ -43,7 +73,8 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 }

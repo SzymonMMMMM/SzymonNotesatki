@@ -16,9 +16,12 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** TODO moze wiecej bajerow jak w RegistrationFormType */
         $builder->add('email');
         $builder->add('password', PasswordType::class, [
+
             'attr' => ['maxlength' => 4096],
+            'required' => true,
         ]);
     }
 

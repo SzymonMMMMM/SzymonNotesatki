@@ -138,6 +138,10 @@
                 <source>message.created_successfully</source>
                 <target>Utworzono pomyślnie</target>
             </trans-unit>
+            <trans-unit id="message.registered_successfully">
+                <source>message.registered_successfully</source>
+                <target>Rejestracja zakończona sukcesem!</target>
+            </trans-unit>
             <trans-unit id="message.deleted_successfully">
                 <source>message.deleted_successfully</source>
                 <target>Usunięto pomyślnie</target>
