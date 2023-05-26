@@ -29,6 +29,7 @@ class TagFixtures extends AbstractBaseFixtures
             return $tag;
         });
 
+        
         $this->manager->flush();
     }
 }

@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Entity\User;
 use App\Form\Type\NoteType;
 use App\Service\NoteServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,7 +55,8 @@ class NoteController extends AbstractController
     public function index(Request $request): Response
     {
         $pagination = $this->noteService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $this->getUser()
         );
 
         return $this->render('notes/index.html.twig', ['pagination' => $pagination]);
@@ -70,7 +72,19 @@ class NoteController extends AbstractController
     #[Route('/{id}', name: 'note_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(Note $note): Response
     {
-        return $this->render('notes/show.html.twig', ['notes' => $note]);
+        if ($note->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+
+            return $this->redirectToRoute('note_index');
+        }
+
+        return $this->render(
+            'note/show.html.twig',
+            ['note' => $note]
+        );
     }
 
     /**
@@ -83,7 +97,10 @@ class NoteController extends AbstractController
     #[Route('/create', name: 'note_create', methods: 'GET|POST', )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $note = new Note();
+        $note->setAuthor($user);
         $form = $this->createForm(
             NoteType::class,
             $note,

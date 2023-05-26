@@ -42,6 +42,10 @@ class TodoItemFixtures extends AbstractBaseFixtures
             return $todoItem;
         });
 
+        /** TODO */
+        /** @var User $author */
+        //$author = $this->getRandomReference('users');
+        //$task->setAuthor($author);
         $this->manager->flush();
     }
 }

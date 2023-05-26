@@ -47,8 +47,14 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $note->setCategory($category);
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $note->setAuthor($author);
+
             return $note;
         });
+;
 
         $this->manager->flush();
     }
