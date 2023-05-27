@@ -26,7 +26,7 @@
     position: relative;
     border: 2px solid #777;
     margin: 0;
-    width: 665px;
+    width: 666px;
     float: right;
 }
 
@@ -146,7 +146,7 @@
     text-align: center;
     padding: 4px 0;
     font-size: 15px;
-    max-width: 130px; /* Use max-width instead of width to allow items to shrink */
+    width: 130px; /* Use max-width instead of width to allow items to shrink */
 }
 
 .tw-toggle input {
