@@ -1,0 +1,218 @@
+.float-button {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    z-index: 9999;
+}
+
+
+.btn-floating {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    font-size: 35px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tw-toggle {
+    display: flex;
+    flex-shrink: 2;
+    align-items: center;
+    height: 100px;
+    padding: 4px 6px;
+    border-radius: 100px;
+    position: relative;
+    border: 2px solid #777;
+    margin: 0;
+    width: 665px;
+    float: right;
+}
+
+
+@media (max-width: 665px) {
+    .tw-toggle {
+        width: 100%;
+        display: flex;
+    }
+
+    .tw-toggle input,
+    .tw-toggle input[value="false"],
+    .tw-toggle input[value="-1"],
+    .tw-toggle input[value="true"],
+    .tw-toggle input[value="3"],
+    .tw-toggle input[value="4"]{
+        position: relative;
+        width: 20%; /* Adjust the width as desired */
+        z-index: 0;
+        flex: 1;
+        left: 0px;
+    }
+    /*
+    .tw-toggle input[value="false"]:checked ~ span,
+    .tw-toggle input[value="-1"]:checked ~ span,
+    .tw-toggle input[value="true"]:checked ~ span,
+    .tw-toggle input[value="3"]:checked ~ span,
+    .tw-toggle input[value="4"]:checked ~ span{
+        position: inherit;
+        width: 20%;
+        z-index: 5;
+        flex: 1;
+        left: 0px;
+    } */
+
+    .tw-toggle label{
+        position: fixed;
+    }
+    .tw-toggle label[value="false"] {
+        left: 50%;
+    }
+    .tw-toggle label[value="-1"] {
+
+        left: 50%;
+    }
+    .tw-toggle label[value="true"] {
+
+        left: 50%;
+}
+
+    .tw-toggle label[value="3"]
+{
+        left: 50%;
+
+}
+    .tw-toggle label[value="4"] {
+        position: absolute;
+        z-index: 1;
+        left: 500px;
+    }
+}
+
+.tw-toggle label {
+    text-align: center;
+    font-family: sans-serif;
+    flex-shrink: 1; /* Set flex-shrink to 1 to allow items to shrink */
+    color: #777;
+    z-index: 3;
+    margin: 0;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 15px;
+    max-width: 130px; /* Use max-width instead of width to allow items to shrink */
+}
+
+.tw-toggle input {
+    display: inline-block;
+    height: 100px;
+    margin: 0;
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    cursor: pointer;
+    width: 130px;
+}
+
+.tw-toggle span {
+    height: 90px;
+    width: 130px;
+    line-height: 100px;
+    border-radius: 100px;
+    background: #fff;
+    display: block;
+    position: absolute;
+    left: 22px;
+    top: 4px;
+    transition: all 0.3s ease-in-out;
+}
+@media (min-width: 665px) {
+    .tw-toggle label {
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .tw-toggle input[value="false"] {
+        left: 3px;
+    }
+
+    .tw-toggle input[value="-1"] {
+        left: 138px;
+    }
+
+    .tw-toggle input[value="true"] {
+        left: 270px;
+    }
+
+    .tw-toggle input[value="3"] {
+        left: 400px;
+    }
+
+    .tw-toggle input[value="4"] {
+        left: 530px;
+    }
+
+    .tw-toggle input[value="false"]:checked ~ span {
+        background: #e74c3c;
+        left: 8px;
+        color: #fff;
+    }
+
+    .tw-toggle input[value="true"]:checked ~ span {
+        background: #27ae60;
+        left: 267px;
+    }
+
+    .tw-toggle input[value="-1"]:checked ~ span {
+        background: #444;
+        left: 137px;
+    }
+
+    .tw-toggle input[value="3"]:checked ~ span {
+        background: #ff8345;
+        left: 400px;
+    }
+
+    .tw-toggle input[value="4"]:checked ~ span {
+        background: #e984df;
+        left: 527px;
+    }
+
+
+    .tw-toggle input[value="false"]:checked + label,
+    .tw-toggle input[value="true"]:checked + label {
+        color: #fff;
+    }
+
+    .tw-toggle input[value="-1"]:checked + label {
+        color: #fff;
+    }
+
+    .tw-toggle input[value="3"]:checked + label {
+        color: #fff;
+    }
+
+    .tw-toggle input[value="4"]:checked + label {
+        color: #fff;
+    }
+}
+/* Actions */
+.action-links {
+    gap: 10px;
+    width: 210px;
+    justify-content: flex-end;}
+
+.action-links a {
+    padding: 5px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.register-link, .signin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}

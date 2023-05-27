@@ -5,8 +5,12 @@ parameters:
     - toggle_position: position of toggle depending on website
 #}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-<div class="tw-toggle">
+{% if is_granted('ROLE_ADMIN') %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/fivebutton.css') }}">
+    {% endblock %}
+{% endif %}
+<div class="tw-toggle responsive-toggle">
     <input  {% if toggle_position == 'notes_position' %}checked{% endif %}
             type="radio" name="toggle" value="false" onclick="location.href='{{ url('note_index') }}';">
     <label class="toggle toggle-yes">{{ 'label.notes'|trans }}</label>
@@ -16,5 +20,15 @@ parameters:
     <input  {% if toggle_position == 'category_position' %}checked{% endif %}
             type="radio" name="toggle" value="true" onclick="location.href='{{ url('category_index') }}';">
     <label class="toggle toggle-yes">{{ 'label.category_manager'|trans }}</label>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <input {% if toggle_position == 'users_position' %}checked{% endif %}
+               type="radio" name="toggle" value="3" onclick="location.href='{{ url('user_index') }}';">
+        <label class="toggle toggle-yes">{{ 'label.user_manager'|trans }}</label>
+
+        <input {% if toggle_position == 'tag_position' %}checked{% endif %}
+               type="radio" name="toggle" value="4" onclick="location.href='{{ url('tag_index') }}';">
+        <label class="toggle toggle-yes">{{ 'label.tags'|trans }}</label>
+    {% endif %}
     <span></span>
 </div>

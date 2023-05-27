@@ -162,6 +162,10 @@
                 <source>action.manage_account</source>
                 <target>Manage account</target>
             </trans-unit>
+            <trans-unit id="label.user_manager">
+                <source>label.user_manager</source>
+                <target>Manage users</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
