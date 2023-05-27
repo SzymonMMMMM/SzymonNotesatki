@@ -158,6 +158,10 @@
                 <source>message.deleted_successfully</source>
                 <target>Usunięto pomyślnie</target>
             </trans-unit>
+            <trans-unit id="action.manage_account">
+                <source>action.manage_account</source>
+                <target>Zarządzaj kontem</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

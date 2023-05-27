@@ -10,13 +10,12 @@ use App\Service\UserService;
 use App\Service\UserServiceInterface;
 use App\Form\Type\UserType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
-
 /**
  * Class UserController.
  */
@@ -55,6 +54,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(name: 'user_index', methods: 'GET')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList(
@@ -77,6 +77,7 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
+    #[IsGranted('VIEW', subject: 'user')]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
@@ -91,6 +92,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'user')]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(
@@ -136,6 +138,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'user')]
     public function delete(Request $request, User $user): Response
     {
 
