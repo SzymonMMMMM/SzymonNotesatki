@@ -108,7 +108,7 @@ class UserVoter extends Voter
     /** TODO ghetto sprawdzanie jesli nie jest userem to czy jest administratorem */
     private function canEdit(User $user, User $user1): bool
     {
-        if ($user1->getRoles() === ["ROLE_USER", "ROLE_ADMIN"]){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
         else
@@ -125,11 +125,10 @@ class UserVoter extends Voter
      */
     private function canView(User $user, User $user1): bool
     {
-        if ($user1->getRoles() === ["ROLE_USER", "ROLE_ADMIN"]){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        else
-        return $user->getEmail() === $user1->getEmail();
+        else return $user->getEmail() === $user1->getEmail();
     }
 
     /**
@@ -142,7 +141,7 @@ class UserVoter extends Voter
      */
     private function canDelete(User $user, User $user1): bool
     {
-        if ($user1->getRoles() === ["ROLE_USER", "ROLE_ADMIN"]){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
         else
