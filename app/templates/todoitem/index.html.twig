@@ -8,7 +8,7 @@
     {% include 'default/_three_way_toggle_button.html.twig' with {
         toggle_position: 'todoitem_position',
     }%}
-    <h1>{{ 'title.todoitem_list'|trans }}</h1>
+    <h1 class="display-1">{{ 'title.todoitem_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}

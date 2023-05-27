@@ -24,12 +24,24 @@
     border-radius: 100px;
     position: relative;
     border: 2px solid #777;
-    margin: 0;
     flex-flow: wrap;
     width: 410px;
-    float: right;
 }
-
+@media (min-width: 727px) {
+    .tw-toggle{
+        float: right;    }
+}
+@media (max-width: 727px) {
+    .tw-toggle{
+        margin: 0 auto;
+    }
+}
+@media (max-width: 570px) {
+    .tw-toggle{
+        margin-top: 5%;
+        margin-bottom: 3%;
+    }
+}
 .tw-toggle label {
     text-align: center;
     font-family: sans-serif;

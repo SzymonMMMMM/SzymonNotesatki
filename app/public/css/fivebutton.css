@@ -31,20 +31,66 @@
 }
 
 
-@media (max-width: 665px) {
-    .tw-toggle {
-        width: 100%;
-        display: flex;
+@media (max-width: 700px) {
+    .tw-toggle{
+        transform: scale(0.98);
+        right: -2%;
     }
+}
+@media (max-width: 675px) {
+    .tw-toggle{
+        transform: scale(0.95);
+        right: -4%;
+    }
+}
+@media (max-width: 655px) {
+    .tw-toggle{
+        transform: scale(0.93);
+        right: -6%;
+    }
+}
+@media (max-width: 640px) {
+    .tw-toggle{
+        transform: scale(0.90);
+        right: -8%;
+    }
+}
 
+@media (max-width: 625px) {
+    .tw-toggle{
+        transform: scale(0.85);
+        right: -10%;
+    }
+}
+@media (max-width: 605px) {
+    .tw-toggle{
+        transform: scale(0.80);
+        right: -12%;
+    }
+}
+@media (max-width: 570px) {
+    .tw-toggle{
+        transform: scale(0.70);
+        right: -19%;
+    }
+}
+@media (max-width: 520px) {
+    .tw-toggle {
+        transform: scale(0.66);
+        right: -25%;
+    }
+}
+
+/*
     .tw-toggle input,
     .tw-toggle input[value="false"],
     .tw-toggle input[value="-1"],
     .tw-toggle input[value="true"],
     .tw-toggle input[value="3"],
     .tw-toggle input[value="4"]{
-        position: relative;
-        width: 20%; /* Adjust the width as desired */
+        position: absolute;
+
+        width: 20%;
         z-index: 0;
         flex: 1;
         left: 0px;
@@ -60,10 +106,10 @@
         z-index: 5;
         flex: 1;
         left: 0px;
-    } */
+    }
 
     .tw-toggle label{
-        position: fixed;
+        display: inline-block;
     }
     .tw-toggle label[value="false"] {
         left: 50%;
@@ -72,11 +118,12 @@
 
         left: 50%;
     }
-    .tw-toggle label[value="true"] {
+    .tw-toggle label[value="true"]
+{
 
         left: 50%;
 }
-
+    }
     .tw-toggle label[value="3"]
 {
         left: 50%;
@@ -87,14 +134,14 @@
         z-index: 1;
         left: 500px;
     }
-}
+}*/
 
 .tw-toggle label {
     text-align: center;
     font-family: sans-serif;
     flex-shrink: 1; /* Set flex-shrink to 1 to allow items to shrink */
     color: #777;
-    z-index: 3;
+    z-index: 2;
     margin: 0;
     text-align: center;
     padding: 4px 0;
@@ -125,13 +172,13 @@
     top: 4px;
     transition: all 0.3s ease-in-out;
 }
-@media (min-width: 665px) {
+@media (min-width: 600px) {
     .tw-toggle label {
         position: relative;
         display: inline-block;
 
     }
-
+}
     .tw-toggle input[value="false"] {
         left: 3px;
     }
@@ -195,7 +242,7 @@
     .tw-toggle input[value="4"]:checked + label {
         color: #fff;
     }
-}
+
 /* Actions */
 .action-links {
     gap: 10px;
