@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\TodoItem;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -91,5 +92,22 @@ class TodoItemRepository extends ServiceEntityRepository
     {
         $this->_em->remove($todoItem);
         $this->_em->flush();
+    }
+
+    /**
+     * Query todoItems by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('todoitem.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
     }
 }

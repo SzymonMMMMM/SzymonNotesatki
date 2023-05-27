@@ -10,6 +10,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User;
 
 /**
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)
@@ -87,5 +88,22 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $this->_em->remove($category);
         $this->_em->flush();
+    }
+
+    /**
+     * Query categorys by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('category.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
     }
 }

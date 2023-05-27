@@ -17,7 +17,13 @@
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  todoitem.title }}</dd>
             <dt>{{ 'label.completed'|trans }}</dt>
-            <dd>{{  todoitem.completed }}</dd>
+            <dd>
+                {% if todoitem.completed %}
+                    {{ 'label.yes'|trans }}
+                {% else %}
+                    {{ 'label.no'|trans }}
+                {% endif %}
+            </dd>
         </dl>
         <p>
             <a href="{{ url('todoitem_index') }}" title="{{ 'action.back_to_list'|trans }}">

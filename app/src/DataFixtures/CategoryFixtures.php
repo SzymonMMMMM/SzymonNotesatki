@@ -6,14 +6,18 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 use DateTimeImmutable;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
  * Class CategoryFixtures.
  *
  * @psalm-suppress MissingConstructor
  */
-class CategoryFixtures extends AbstractBaseFixtures
+class CategoryFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -23,27 +27,26 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        /** TODO moze jakies ladniejsze purgowanie */
+        if (null === $this->manager || null === $this->faker) {
+            return;
+        }
 
-        $connection = $this->manager->getConnection();
-        $connection->beginTransaction();
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 0');
-        $connection->executeStatement('TRUNCATE TABLE tag');
-        $connection->executeStatement('TRUNCATE TABLE notes_tags');
-        $connection->executeStatement('TRUNCATE TABLE users');
-        $connection->executeStatement('TRUNCATE TABLE todo_item');
-        $connection->executeStatement('TRUNCATE TABLE notes');
-        $connection->executeStatement('TRUNCATE TABLE category');
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 1');
-        //$connection->executeStatement('ALTER TABLE category AUTO_INCREMENT = 1');
 
         $this->createMany(20, 'categories', function (int $i) {
             $category = new Category();
             $category->setTitle($this->faker->unique()->word);
 
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $category->setAuthor($author);
+
             return $category;
         });
 
         $this->manager->flush();
+    }
+    public function getDependencies(): array
+    {
+        return [UserFixtures::class];
     }
 }

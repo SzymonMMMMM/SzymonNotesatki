@@ -122,6 +122,14 @@
                 <source>label.none</source>
                 <target>Brak wyników</target>
             </trans-unit>
+            <trans-unit id="label.no">
+                <source>label.no</source>
+                <target>Nie</target>
+            </trans-unit>
+            <trans-unit id="label.yes">
+                <source>label.yes</source>
+                <target>Tak</target>
+            </trans-unit>
             <trans-unit id="title.note_delete">
                 <source>title.note_delete</source>
                 <target>Usuń notatkę</target>

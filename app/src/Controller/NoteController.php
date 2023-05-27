@@ -82,7 +82,7 @@ class NoteController extends AbstractController
         }
 
         return $this->render(
-            'note/show.html.twig',
+            'notes/show.html.twig',
             ['note' => $note]
         );
     }
@@ -133,6 +133,13 @@ class NoteController extends AbstractController
     #[Route('/{id}/edit', name: 'note_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Note $note): Response
     {
+        if ($note->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+        }
+
         $form = $this->createForm(
             NoteType::class,
             $note,
@@ -174,6 +181,13 @@ class NoteController extends AbstractController
     #[Route('/{id}/delete', name: 'note_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Note $note): Response
     {
+        if ($note->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+        }
+
         $form = $this->createForm(
             FormType::class,
             $note,

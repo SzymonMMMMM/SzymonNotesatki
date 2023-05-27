@@ -59,14 +59,12 @@
             {% endfor %}
             </tbody>
         </table>
-
-        {% include 'default/_add_button.html.twig' with {
-            name_create: url('note_create')
-        } %}
-
     {% else %}
         <p>
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
+    {% include 'default/_add_button.html.twig' with {
+        name_create: url('note_create')
+    } %}
 {% endblock  %}

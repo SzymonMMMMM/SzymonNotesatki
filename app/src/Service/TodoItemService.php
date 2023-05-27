@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\TodoItem;
 use App\Repository\TodoItemRepository;
+use App\Entity\User;
 
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -37,16 +38,17 @@ class TodoItemService implements TodoItemServiceInterface
     }
 
     /**
-     * Get paginated list
+     * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int  $page   Page number
+     * @param User $author Author
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page, User $author): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->todoItemRepository->queryAll(),
+            $this->todoItemRepository->queryByAuthor($author),
             $page,
             TodoItemRepository::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -67,7 +69,7 @@ class TodoItemService implements TodoItemServiceInterface
      *
      * @param TodoItem $todoItem TodoItem entity
      */
-    public function delete(TodoItem $todoItem, /**Task $task*/): void
+    public function delete(TodoItem $todoItem): void
     {
 
         $this->todoItemRepository->delete($todoItem);

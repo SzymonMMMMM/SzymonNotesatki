@@ -122,6 +122,14 @@
                 <source>label.none</source>
                 <target>No results</target>
             </trans-unit>
+            <trans-unit id="label.no">
+                <source>label.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="label.yes">
+                <source>label.yes</source>
+                <target>Yes</target>
+            </trans-unit>
             <trans-unit id="title.note_delete">
                 <source>title.note_delete</source>
                 <target>Delete note</target>

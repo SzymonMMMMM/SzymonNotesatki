@@ -39,6 +39,19 @@ class Category
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title;
 
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
+
+
+
 
     /**
      * Getter for id.
@@ -72,5 +85,18 @@ class Category
 
         return $this;
     }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
 
 }
