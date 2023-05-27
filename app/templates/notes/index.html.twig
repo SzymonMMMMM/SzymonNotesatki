@@ -37,13 +37,21 @@
                     <td>{{ note.title }}</td>
                     <td>{{ note.content }}</td>
                     <td>
-                        {% if note.tags and note.tags|length %}
+                        {% if note.tags is defined and note.tags|length %}
                             {% for tag in note.tags %}
-                                {{ tag.title }}
+                                <a class="btn btn-outline-secondary btn-sm" href="{{ url('note_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                    {{ tag.title }}
+                                </a>
                             {% endfor %}
+                        {% else %}
+                            &nbsp;
                         {% endif %}
                     </td>
-                    <td>{{ note.category.title }}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" href="{{ url('note_index', {'filters.category_id' : note.category.id}) }}" title="{{ note.category.title }}">
+                            {{ note.category.title }}
+                        </a>
+                    </td>
                     <td  class="action-links">
                         <a class="btn btn-outline-primary" href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}

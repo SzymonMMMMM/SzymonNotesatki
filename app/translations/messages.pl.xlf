@@ -130,6 +130,10 @@
                 <source>label.yes</source>
                 <target>Tak</target>
             </trans-unit>
+            <trans-unit id="label.tag">
+                <source>label.tag</source>
+                <target>Tagi</target>
+            </trans-unit>
             <trans-unit id="title.note_delete">
                 <source>title.note_delete</source>
                 <target>Usuń notatkę</target>

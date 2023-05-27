@@ -21,8 +21,7 @@ interface NoteServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface;
-
+    public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface;
     /**
      * Save entity.
      *
@@ -37,4 +36,12 @@ interface NoteServiceInterface
      */
     public function delete(Note $note): void;
 
+    /**
+     * Prepare filters for the tasks list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     */
+    function prepareFilters(array $filters): array;
 }

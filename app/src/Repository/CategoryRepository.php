@@ -106,4 +106,16 @@ class CategoryRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
+
+    /**
+     * Find one by Id.
+     *
+     * @param int $id Id
+     *
+     * @return Category|null Result
+     */
+    public function findOneById(int $id): ?Category
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
 }
