@@ -85,8 +85,6 @@ class TagService implements TagServiceInterface
         return $this->tagRepository->findOneByTitle($title);
     }
 
-    /** TODO not found in repository  */
-
     /**
      * Find by id.
      *

@@ -103,7 +103,6 @@ class NoteService implements NoteServiceInterface
      *
      * @return array<string, object> Result array of filters
      */
-    /** TODO zmienilem z notatek na public? */
     public function prepareFilters(array $filters): array
     {
         $resultFilters = [];

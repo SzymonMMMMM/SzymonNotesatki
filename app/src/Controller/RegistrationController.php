@@ -44,7 +44,6 @@ class RegistrationController extends AbstractController
         $this->userService = $userService;
         $this->translator = $translator;
     }
-    /** TODO ulepszyc automatyczny register wyciagnac autowiring i niech sam request bedzie*/
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator): Response
     {
@@ -53,7 +52,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** TODO czy da sie mniej dla password i dla role */
             $password = $form->get('password')->getData();
             $this->userService->passwordHasher($user, $password);
 

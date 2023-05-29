@@ -174,6 +174,10 @@
                 <source>title.signin</source>
                 <target>Sign in</target>
             </trans-unit>
+            <trans-unit id="message.category_contains_notes">
+                <source>message.category_contains_notes</source>
+                <target>Category contains notes</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

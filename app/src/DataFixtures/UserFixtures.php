@@ -35,17 +35,6 @@ class UserFixtures extends AbstractBaseFixtures
     {
         /** TODO moze jakies ladniejsze purgowanie  */
 
-        $connection = $this->manager->getConnection();
-        $connection->beginTransaction();
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 0');
-        $connection->executeStatement('TRUNCATE TABLE tag');
-        $connection->executeStatement('TRUNCATE TABLE notes_tags');
-        $connection->executeStatement('TRUNCATE TABLE users');
-        $connection->executeStatement('TRUNCATE TABLE todo_item');
-        $connection->executeStatement('TRUNCATE TABLE notes');
-        $connection->executeStatement('TRUNCATE TABLE category');
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 1');
-        //$connection->executeStatement('ALTER TABLE category AUTO_INCREMENT = 1');
 
         if (null === $this->manager || null === $this->faker) {
             return;

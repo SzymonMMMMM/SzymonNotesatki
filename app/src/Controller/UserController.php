@@ -106,7 +106,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** TODO czy moze tak haslo byc zapisane czy lepiej serwis, np czy form get password mozna sie pozbyc i dac to do serwisu, np zamist $password dac $form i wtedy ale kurde znowu type form bym musial dac do serwisu */
             $password = $form->get('password')->getData();
             $this->userService->passwordHasher($user, $password);
 

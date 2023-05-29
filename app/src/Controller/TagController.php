@@ -171,8 +171,6 @@ class TagController extends AbstractController
     #[Route('/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Tag $tag): Response
     {
-        /** TODO tu bylo can be deleted ale jakos nie wiem czy trzeba*/
-
 
         $form = $this->createForm(
             TagType::class,
