@@ -19,7 +19,7 @@ parameters:
     <label class="toggle toggle-yes">{{ 'label.to-do_list'|trans }}</label>
     <input  {% if toggle_position == 'category_position' %}checked{% endif %}
             type="radio" name="toggle" value="true" onclick="location.href='{{ url('category_index') }}';">
-    <label class="toggle toggle-yes">{{ 'label.category_manager'|trans }}</label>
+    <label class="toggle toggle-yes" style="padding-right: 3px;">{{ 'label.category_manager'|trans }}</label>
 
     {% if is_granted('ROLE_ADMIN') %}
         <input {% if toggle_position == 'users_position' %}checked{% endif %}
