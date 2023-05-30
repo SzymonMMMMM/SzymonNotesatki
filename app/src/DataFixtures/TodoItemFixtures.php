@@ -24,7 +24,7 @@ class TodoItemFixtures extends AbstractBaseFixtures implements DependentFixtureI
      */
     public function loadData(): void
     {
-        $this->createMany(20, 'todoitem', function (int $i) {
+        $this->createMany(20, 'todoitem', function () {
             $todoItem = new TodoItem();
             $todoItem->setTitle($this->faker->sentence);
             $todoItem->setCreatedAt(

@@ -13,7 +13,7 @@
     text-align: center;
     padding: 0;
     font-size: 35px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tw-toggle {
@@ -50,7 +50,6 @@
     position: relative;
     z-index: 2;
     margin: 0;
-    text-align: center;
     padding: 4px 0;
     font-size: 15px;
     width: 130px;
@@ -123,16 +122,5 @@
 
 .action-links a {
     padding: 5px;
-}
-
-.completed {
-    text-decoration: line-through;
-}
-
-.register-link, .signin-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
 }
 

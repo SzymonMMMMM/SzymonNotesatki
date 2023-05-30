@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -54,9 +53,11 @@ class CategoryController extends AbstractController
     #[Route(name: 'category_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $pagination = $this->categoryService->getPaginatedList(
             $request->query->getInt('page', 1),
-            $this->getUser()
+            $user
         );
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);

@@ -13,7 +13,7 @@
     text-align: center;
     padding: 0;
     font-size: 35px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tw-toggle {
@@ -243,7 +243,6 @@
     color: #777;
     z-index: 2;
     margin: 0;
-    text-align: center;
     padding: 4px 0;
     font-size: 15px;
     width: 130px; /* Use max-width instead of width to allow items to shrink */
@@ -260,18 +259,6 @@
     width: 130px;
 }
 
-.tw-toggle span {
-    height: 90px;
-    width: 130px;
-    line-height: 100px;
-    border-radius: 100px;
-    background: #fff;
-    display: block;
-    position: absolute;
-    left: 22px;
-    top: 4px;
-    transition: all 0.3s ease-in-out;
-}
 @media (min-width: 600px) {
     .tw-toggle label {
         position: relative;
@@ -351,15 +338,4 @@
 
 .action-links a {
     padding: 5px;
-}
-
-.completed {
-    text-decoration: line-through;
-}
-
-.register-link, .signin-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
 }

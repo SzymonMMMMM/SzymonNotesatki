@@ -77,7 +77,7 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query categorys by author.
+     * Query categories by author.
      *
      * @param User $user User entity
      *
@@ -94,9 +94,9 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find one by Id.
+     * Find one by ID.
      *
-     * @param int $id Id
+     * @param int $id ID
      *
      * @return Category|null Result
      */

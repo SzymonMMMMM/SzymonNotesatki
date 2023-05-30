@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\TodoItem;
+use App\Entity\User;
 use App\Service\TodoItemServiceInterface;
 use App\Form\Type\TodoItemType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,9 +53,11 @@ class TodoItemController extends AbstractController
     #[Route(name: 'todoitem_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $pagination = $this->todoItemService->getPaginatedList(
             $request->query->getInt('page', 1),
-            $this->getUser()
+            $user
         );
 
         return $this->render('todoitem/index.html.twig', ['pagination' => $pagination]);

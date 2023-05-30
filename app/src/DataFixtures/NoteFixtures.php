@@ -28,7 +28,7 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             return;
         }
 
-        $this->createMany(100, 'notes', function (int $i) {
+        $this->createMany(100, 'notes', function () {
             $note = new Note();
             $note->setTitle($this->faker->sentence);
             $note->setContent($this->faker->sentences(4, true));
@@ -69,15 +69,4 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         return [CategoryFixtures::class];
     }
 
-    /**
-     * Get random title.
-     *
-     * @return string $words words
-     */
-    private function generateRandomTitle(): string
-    {
-        $words = $this->faker->words($nb = 3, $asText = true);
-
-        return ucwords($words);
-    }
 }

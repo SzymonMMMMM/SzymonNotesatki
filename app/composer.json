@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^2.0",
@@ -98,6 +98,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "static-analysis": [
+            "./vendor/bin/phpcs --config-set installed_paths $(realpath vendor/escapestudios/symfony2-coding-standard)",
+            "./vendor/bin/phpcs --config-set default_standard Symfony",
+            "./vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php",
+            "./vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12"
         ]
     },
     "conflict": {
