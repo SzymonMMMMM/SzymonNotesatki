@@ -109,6 +109,27 @@ class NoteRepository extends ServiceEntityRepository
     }
 
     /**
+     * Count notes by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of notes in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('notes.id'))
+            ->where('notes.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * Apply filters to paginated list.
      *
      * @param QueryBuilder          $queryBuilder Query builder
@@ -141,26 +162,5 @@ class NoteRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('notes');
-    }
-
-    /**
-     * Count notes by category.
-     *
-     * @param Category $category Category
-     *
-     * @return int Number of notes in category
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function countByCategory(Category $category): int
-    {
-        $qb = $this->getOrCreateQueryBuilder();
-
-        return $qb->select($qb->expr()->countDistinct('notes.id'))
-            ->where('notes.category = :category')
-            ->setParameter(':category', $category)
-            ->getQuery()
-            ->getSingleScalarResult();
     }
 }

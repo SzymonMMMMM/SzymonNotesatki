@@ -68,5 +68,4 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     {
         return [CategoryFixtures::class];
     }
-
 }

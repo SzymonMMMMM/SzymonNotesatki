@@ -22,7 +22,7 @@ class TagFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(30, 'tags', function (int $i) {
+        $this->createMany(30, 'tags', function () {
             $tag = new Tag();
             $tag->setTitle($this->faker->unique()->word);
 

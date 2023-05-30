@@ -8,6 +8,7 @@ namespace App\Service;
 use App\Entity\Note;
 use App\Entity\User;
 use App\Repository\NoteRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -61,6 +62,8 @@ class NoteService implements NoteServiceInterface
      * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
+     *
+     * @throws NonUniqueResultException
      */
     public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface
     {
@@ -99,6 +102,8 @@ class NoteService implements NoteServiceInterface
      * @param array<string, int> $filters Raw filters from request
      *
      * @return array<string, object> Result array of filters
+     *
+     * @throws NonUniqueResultException
      */
     public function prepareFilters(array $filters): array
     {
