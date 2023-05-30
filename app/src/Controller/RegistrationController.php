@@ -1,9 +1,11 @@
 <?php
+/**
+ * Registration controller.
+ */
 
 namespace App\Controller;
 
 use App\Entity\User;
-
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,23 +15,19 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use App\Service\UserServiceInterface;
 use App\Form\Type\UserType;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-
-
+/**
+ * Class RegistrationController.
+ */
 class RegistrationController extends AbstractController
 {
-
     /**
      * User service.
      */
     private UserServiceInterface $userService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface $translator;
+     * Translator.
      */
     private TranslatorInterface $translator;
 
@@ -37,13 +35,23 @@ class RegistrationController extends AbstractController
      * Constructor.
      *
      * @param UserServiceInterface $userService User service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
         $this->userService = $userService;
         $this->translator = $translator;
     }
+
+    /**
+     * Register action.
+     *
+     * @param Request                    $request           HTTP Request
+     * @param UserAuthenticatorInterface $userAuthenticator User Authenticator Interface
+     * @param LoginFormAuthenticator     $authenticator     Login Form Authenticator
+     *
+     * @return Response HTTP response
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator): Response
     {

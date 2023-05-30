@@ -7,9 +7,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -31,7 +28,6 @@ class CategoryFixtures extends AbstractBaseFixtures implements DependentFixtureI
             return;
         }
 
-
         $this->createMany(20, 'categories', function (int $i) {
             $category = new Category();
             $category->setTitle($this->faker->unique()->word);
@@ -45,6 +41,15 @@ class CategoryFixtures extends AbstractBaseFixtures implements DependentFixtureI
 
         $this->manager->flush();
     }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: UserFixtures::class}
+     */
     public function getDependencies(): array
     {
         return [UserFixtures::class];

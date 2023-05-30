@@ -1,21 +1,15 @@
 <?php
+/**
+ * TodoItem repository.
+ */
 
 namespace App\Repository;
 
 use App\Entity\TodoItem;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
-
-
-
 
 /**
  * @extends ServiceEntityRepository<TodoItem>
@@ -48,7 +42,6 @@ class TodoItemRepository extends ServiceEntityRepository
         parent::__construct($registry, TodoItem::class);
     }
 
-
     /**
      * Query all records.
      *
@@ -62,18 +55,6 @@ class TodoItemRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('todoitem');
-    }
-
-    /**
      * Save entity.
      *
      * @param TodoItem $todoItem TodoItem entity
@@ -83,6 +64,7 @@ class TodoItemRepository extends ServiceEntityRepository
         $this->_em->persist($todoItem);
         $this->_em->flush();
     }
+
     /**
      * Remove entity.
      *
@@ -109,5 +91,17 @@ class TodoItemRepository extends ServiceEntityRepository
             ->setParameter('author', $user);
 
         return $queryBuilder;
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('todoitem');
     }
 }

@@ -2,11 +2,12 @@
 /**
  * Category service interface.
  */
+
 namespace App\Service;
 
 use App\Entity\Category;
 use App\Entity\User;
-use ContainerOmxiObs\getCategoryService;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -17,7 +18,8 @@ interface CategoryServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int  $page   Page number
+     * @param User $author Author
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -35,7 +37,7 @@ interface CategoryServiceInterface
      *
      * @param Category $category Category entity
      */
-    public function delete(Category $category):void;
+    public function delete(Category $category): void;
 
     /**
      * Can Category be deleted?

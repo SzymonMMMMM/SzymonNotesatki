@@ -2,14 +2,12 @@
 /**
  * TodoItem service.
  */
+
 namespace App\Service;
 
 use App\Entity\TodoItem;
 use App\Repository\TodoItemRepository;
 use App\Entity\User;
-
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -29,7 +27,10 @@ class TodoItemService implements TodoItemServiceInterface
     private PaginatorInterface $paginator;
 
     /**
-     * Construct.
+     * Constructor.
+     *
+     * @param TodoItemRepository $todoItemRepository TodoItem repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(TodoItemRepository $todoItemRepository, PaginatorInterface $paginator)
     {
@@ -71,8 +72,6 @@ class TodoItemService implements TodoItemServiceInterface
      */
     public function delete(TodoItem $todoItem): void
     {
-
         $this->todoItemRepository->delete($todoItem);
     }
-
 }

@@ -1,20 +1,20 @@
 <?php
+/**
+ * Note_tags fixtures.
+ */
 
 namespace App\DataFixtures;
 
-
-use App\DataFixtures\NoteFixtures;
-use App\DataFixtures\TagFixtures;
-use App\Entity\Note;
-use App\Entity\Tag;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-/** TODO komentarze */
+/**
+ * Class NotesTagsFixtures.
+ */
 class NotesTagsFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
-
+    /**
+     * Load Data.
+     */
     public function loadData(): void
     {
         if (null === $this->manager || null === $this->faker) {
@@ -25,11 +25,20 @@ class NotesTagsFixtures extends AbstractBaseFixtures implements DependentFixture
             $tag = $this->getRandomReference('tags');
 
             $note->addTag($tag);
+
             return $note;
         });
         $this->manager->flush();
     }
 
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] Array of dependencies
+     *
+     * @psalm-return array{0: NoteFixtures::class, 1: TagFixtures::class}
+     */
     public function getDependencies(): array
     {
         return [
@@ -38,4 +47,3 @@ class NotesTagsFixtures extends AbstractBaseFixtures implements DependentFixture
         ];
     }
 }
-

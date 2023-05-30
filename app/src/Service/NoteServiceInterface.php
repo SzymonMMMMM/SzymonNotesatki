@@ -17,11 +17,14 @@ interface NoteServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int   $page    Page number
+     * @param User  $author  Author
+     * @param array $filters Filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface;
+
     /**
      * Save entity.
      *
@@ -43,5 +46,5 @@ interface NoteServiceInterface
      *
      * @return array<string, object> Result array of filters
      */
-    function prepareFilters(array $filters): array;
+    public function prepareFilters(array $filters): array;
 }

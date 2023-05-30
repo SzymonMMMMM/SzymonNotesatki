@@ -6,16 +6,13 @@
 namespace App\Controller;
 
 use App\Entity\Tag;
-use App\Service\TagService;
 use App\Service\TagServiceInterface;
 use App\Form\Type\TagType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 
 /**
  * Class TagController.
@@ -29,9 +26,7 @@ class TagController extends AbstractController
     private TagServiceInterface $tagService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface $translator;
+     * Translator.
      */
     private TranslatorInterface $translator;
 
@@ -100,8 +95,7 @@ class TagController extends AbstractController
         $form = $this->createForm(TagType::class, $tag);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->tagService->save($tag);
 
             $this->addFlash(
@@ -118,12 +112,11 @@ class TagController extends AbstractController
         );
     }
 
-
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
@@ -163,15 +156,14 @@ class TagController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Tag $tag): Response
     {
-
         $form = $this->createForm(
             TagType::class,
             $tag,
@@ -201,5 +193,4 @@ class TagController extends AbstractController
             ]
         );
     }
-
 }

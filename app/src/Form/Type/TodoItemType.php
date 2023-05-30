@@ -32,14 +32,14 @@ class TodoItemType extends AbstractType
     {
         $builder
             ->add(
-            'title',
-            TextType::class,
-            [
+                'title',
+                TextType::class,
+                [
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]
-        );
+                ]
+            );
         if ($options['is_edit']) {
             $builder
                 ->add('completed', CheckboxType::class, [
@@ -62,6 +62,7 @@ class TodoItemType extends AbstractType
         ]);
         $resolver->setAllowedTypes('is_edit', 'bool');
     }
+
     /**
      * Returns the prefix of the template block name for this type.
      *
@@ -75,5 +76,3 @@ class TodoItemType extends AbstractType
         return 'todoitem';
     }
 }
-
-

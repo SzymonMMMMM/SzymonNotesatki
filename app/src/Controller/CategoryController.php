@@ -7,16 +7,14 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\User;
-use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use App\Form\Type\CategoryType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 
 /**
  * Class CategoryController.
@@ -30,9 +28,7 @@ class CategoryController extends AbstractController
     private CategoryServiceInterface $categoryService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface $translator;
+     * Translator.
      */
     private TranslatorInterface $translator;
 
@@ -40,7 +36,7 @@ class CategoryController extends AbstractController
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService Category service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
@@ -89,6 +85,7 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
+
         return $this->render('category/show.html.twig', ['category' => $category]);
     }
 
@@ -112,8 +109,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
 
             $this->addFlash(
@@ -129,7 +125,6 @@ class CategoryController extends AbstractController
             ['form' => $form->createView()]
         );
     }
-
 
     /**
      * Edit action.
@@ -197,7 +192,7 @@ class CategoryController extends AbstractController
             );
         }
 
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_notes')
@@ -235,5 +230,4 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
 }

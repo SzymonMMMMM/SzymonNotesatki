@@ -14,14 +14,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Category.
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-//#[ORM\Table(name: 'categories')]
 #[UniqueEntity(fields: ['title'])]
 class Category
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,8 +27,6 @@ class Category
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -41,17 +36,12 @@ class Category
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
-
-
-
 
     /**
      * Getter for id.
@@ -62,7 +52,6 @@ class Category
     {
         return $this->id;
     }
-
 
     /**
      * Getter for title.
@@ -77,26 +66,30 @@ class Category
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
      */
-    public function setTitle(string $title): self
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-
-        return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null Author
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author Author
+     */
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
-
-
 }

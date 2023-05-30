@@ -98,7 +98,7 @@ class NoteController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'note_create', methods: 'GET|POST', )]
+    #[Route('/create', name: 'note_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         /** @var User $user */
@@ -123,7 +123,7 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('note_index');
         }
 
-        return $this->render('notes/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('notes/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**

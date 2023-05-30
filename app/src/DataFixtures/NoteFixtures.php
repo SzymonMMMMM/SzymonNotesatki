@@ -6,10 +6,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\NoteStatus;
 use App\Entity\Note;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -35,12 +33,12 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $note->setTitle($this->faker->sentence);
             $note->setContent($this->faker->sentences(4, true));
             $note->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $note->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
@@ -54,7 +52,6 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 
             return $note;
         });
-;
 
         $this->manager->flush();
     }
@@ -80,7 +77,7 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     private function generateRandomTitle(): string
     {
         $words = $this->faker->words($nb = 3, $asText = true);
+
         return ucwords($words);
     }
-
 }

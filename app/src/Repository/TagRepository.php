@@ -1,14 +1,14 @@
 <?php
+/**
+ * Tag repository.
+ */
 
 namespace App\Repository;
 
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-
 
 /**
  * @extends ServiceEntityRepository<Tag>
@@ -20,6 +20,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TagRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
@@ -58,7 +63,6 @@ class TagRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-
     /**
      * Query all records.
      *
@@ -70,6 +74,7 @@ class TagRepository extends ServiceEntityRepository
             ->select('partial tag.{id, title}')
             ->orderBy('tag.id', 'ASC');
     }
+
     /**
      * Get or create new query builder.
      *
@@ -81,7 +86,4 @@ class TagRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('tag');
     }
-
-
-
 }

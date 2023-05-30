@@ -1,4 +1,7 @@
 <?php
+/**
+ * Note repository.
+ */
 
 namespace App\Repository;
 
@@ -6,13 +9,10 @@ use App\Entity\Category;
 use App\Entity\Note;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\User;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 
 /**
  * @extends ServiceEntityRepository<Note>
@@ -44,7 +44,6 @@ class NoteRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
-
     /**
      * Save entity.
      *
@@ -70,6 +69,8 @@ class NoteRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters Filters
+     *
      * @return QueryBuilder Query builder
      */
     public function queryAll(array $filters): QueryBuilder
@@ -85,18 +86,6 @@ class NoteRepository extends ServiceEntityRepository
             ->orderBy('notes.updatedAt', 'DESC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('notes');
     }
 
     /**
@@ -138,5 +127,17 @@ class NoteRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder;
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('notes');
     }
 }

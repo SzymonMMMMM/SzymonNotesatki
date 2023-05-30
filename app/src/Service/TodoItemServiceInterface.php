@@ -2,11 +2,11 @@
 /**
  * TodoItem service interface.
  */
+
 namespace App\Service;
 
 use App\Entity\TodoItem;
 use App\Entity\User;
-
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -17,7 +17,8 @@ interface TodoItemServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int  $page   Page number
+     * @param User $author Author
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -35,6 +36,5 @@ interface TodoItemServiceInterface
      *
      * @param TodoItem $todoItem TodoItem entity
      */
-    public function delete(TodoItem $todoItem):void;
-
+    public function delete(TodoItem $todoItem): void;
 }

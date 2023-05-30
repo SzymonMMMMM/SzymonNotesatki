@@ -2,13 +2,13 @@
 /**
  * Category service.
  */
+
 namespace App\Service;
 
 use App\Entity\Category;
 use App\Entity\User;
 use App\Repository\NoteRepository;
 use App\Repository\CategoryRepository;
-
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -35,7 +35,11 @@ class CategoryService implements CategoryServiceInterface
     private PaginatorInterface $paginator;
 
     /**
-     * Construct.
+     * Constructor.
+     *
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param NoteRepository     $noteRepository     Note repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, NoteRepository $noteRepository, PaginatorInterface $paginator)
     {
@@ -90,14 +94,15 @@ class CategoryService implements CategoryServiceInterface
      */
     public function canBeDeleted(Category $category): bool
     {
-        try{
+        try {
             $result = $this->noteRepository->countByCategory($category);
 
             return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException){
+        } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
     }
+
     /**
      * Find by id.
      *

@@ -8,8 +8,6 @@ namespace App\DataFixtures;
 use App\Entity\TodoItem;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use DateTimeImmutable;
-
 
 /**
  * Class TodoItemFixtures.
@@ -30,17 +28,17 @@ class TodoItemFixtures extends AbstractBaseFixtures implements DependentFixtureI
             $todoItem = new TodoItem();
             $todoItem->setTitle($this->faker->sentence);
             $todoItem->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $todoItem->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
-            $CompletedPercentage = $this->faker->boolean(70);
-            $todoItem->setCompleted($CompletedPercentage);
+            $completedPercentage = $this->faker->boolean(70);
+            $todoItem->setCompleted($completedPercentage);
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
@@ -51,6 +49,15 @@ class TodoItemFixtures extends AbstractBaseFixtures implements DependentFixtureI
 
         $this->manager->flush();
     }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: UserFixtures::class}
+     */
     public function getDependencies(): array
     {
         return [UserFixtures::class];

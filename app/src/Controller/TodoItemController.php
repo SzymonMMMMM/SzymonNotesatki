@@ -6,16 +6,13 @@
 namespace App\Controller;
 
 use App\Entity\TodoItem;
-use App\Entity\User;
 use App\Service\TodoItemServiceInterface;
 use App\Form\Type\TodoItemType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 
 /**
  * Class TodoItemController.
@@ -29,9 +26,7 @@ class TodoItemController extends AbstractController
     private TodoItemServiceInterface $todoItemService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface $translator;
+     * Translator.
      */
     private TranslatorInterface $translator;
 
@@ -39,7 +34,7 @@ class TodoItemController extends AbstractController
      * Constructor.
      *
      * @param TodoItemServiceInterface $todoItemService TodoItem service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(TodoItemServiceInterface $todoItemService, TranslatorInterface $translator)
     {
@@ -88,6 +83,7 @@ class TodoItemController extends AbstractController
 
             return $this->redirectToRoute('todoitem_index');
         }
+
         return $this->render('todoitem/show.html.twig', ['todoitem' => $todoItem]);
     }
 
@@ -111,8 +107,7 @@ class TodoItemController extends AbstractController
         $form = $this->createForm(TodoItemType::class, $todoItem);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->todoItemService->save($todoItem);
 
             $this->addFlash(
@@ -128,7 +123,6 @@ class TodoItemController extends AbstractController
             ['form' => $form->createView()]
         );
     }
-
 
     /**
      * Edit action.
@@ -148,14 +142,13 @@ class TodoItemController extends AbstractController
             );
         }
 
-            $form = $this->createForm(
+        $form = $this->createForm(
             TodoItemType::class,
             $todoItem,
             [
-                'method' => 'PUT',
-                'action' => $this->generateUrl('todoitem_edit', ['id' => $todoItem->getId()]),
-                'is_edit' => true,
-
+            'method' => 'PUT',
+            'action' => $this->generateUrl('todoitem_edit', ['id' => $todoItem->getId()]),
+            'is_edit' => true,
             ]
         );
         $form->handleRequest($request);
@@ -227,5 +220,4 @@ class TodoItemController extends AbstractController
             ]
         );
     }
-
 }

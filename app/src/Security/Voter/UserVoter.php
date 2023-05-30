@@ -39,8 +39,6 @@ class UserVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -105,13 +103,12 @@ class UserVoter extends Voter
      *
      * @return bool Result
      */
-    /** TODO ghetto sprawdzanie jesli nie jest userem to czy jest administratorem */
     private function canEdit(User $user, User $user1): bool
     {
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        else
+
         return $user->getEmail() === $user1->getEmail();
     }
 
@@ -128,7 +125,8 @@ class UserVoter extends Voter
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        else return $user->getEmail() === $user1->getEmail();
+
+        return $user->getEmail() === $user1->getEmail();
     }
 
     /**
@@ -144,8 +142,7 @@ class UserVoter extends Voter
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        else
+
         return $user->getEmail() === $user1->getEmail();
     }
-
 }

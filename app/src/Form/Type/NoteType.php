@@ -12,7 +12,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\Tag;
 use App\Form\DataTransformer\TagsDataTransformer;
 
 /**
@@ -22,8 +21,6 @@ class NoteType extends AbstractType
 {
     /**
      * Tags data transformer.
-     *
-     * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
 
@@ -36,6 +33,7 @@ class NoteType extends AbstractType
     {
         $this->tagsDataTransformer = $tagsDataTransformer;
     }
+
     /**
      * Builds the form.
      *
@@ -56,12 +54,16 @@ class NoteType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
-        $builder->add('content', TextType::class,
+            ]
+        );
+        $builder->add(
+            'content',
+            TextType::class,
             [
                 'label' => 'label.content',
                 'attr' => ['maxlength' => 65535],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,

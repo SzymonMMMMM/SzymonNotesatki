@@ -8,6 +8,7 @@ namespace App\Service;
 use App\Entity\Note;
 use App\Entity\User;
 use App\Repository\NoteRepository;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -44,12 +45,8 @@ class NoteService implements NoteServiceInterface
      * @param TagServiceInterface      $tagService      Tag service
      * @param NoteRepository           $noteRepository  Note repository
      */
-    public function __construct(
-        CategoryServiceInterface $categoryService,
-        PaginatorInterface $paginator,
-        TagServiceInterface $tagService,
-        NoteRepository $noteRepository
-    ) {
+    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, NoteRepository $noteRepository)
+    {
         $this->categoryService = $categoryService;
         $this->paginator = $paginator;
         $this->tagService = $tagService;

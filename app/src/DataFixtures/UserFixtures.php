@@ -8,7 +8,6 @@ namespace App\DataFixtures;
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 /**
  * Class UserFixtures.
@@ -21,6 +20,8 @@ class UserFixtures extends AbstractBaseFixtures
     private UserPasswordHasherInterface $passwordHasher;
 
     /**
+     * Constructor.
+     *
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -33,9 +34,6 @@ class UserFixtures extends AbstractBaseFixtures
      */
     protected function loadData(): void
     {
-        /** TODO moze jakies ladniejsze purgowanie  */
-
-
         if (null === $this->manager || null === $this->faker) {
             return;
         }

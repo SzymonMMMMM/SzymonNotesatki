@@ -2,12 +2,11 @@
 /**
  * User service interface.
  */
+
 namespace App\Service;
 
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
 
 /**
  * Class UserServiceInterface.
@@ -35,12 +34,12 @@ interface UserServiceInterface
      *
      * @param User $user User entity
      */
-    public function delete(User $user):void;
+    public function delete(User $user): void;
 
     /**
      * Hash password.
      *
-     * @param User $user User entity
+     * @param User   $user     User entity
      * @param string $password Plain password
      */
     public function passwordHasher(User $user, string $password): void;

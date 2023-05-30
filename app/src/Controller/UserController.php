@@ -6,16 +6,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Service\UserService;
 use App\Service\UserServiceInterface;
 use App\Form\Type\UserType;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 /**
  * Class UserController.
  */
@@ -28,9 +27,7 @@ class UserController extends AbstractController
     private UserServiceInterface $userService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface $translator;
+     * Translator.
      */
     private TranslatorInterface $translator;
 
@@ -38,7 +35,7 @@ class UserController extends AbstractController
      * Constructor.
      *
      * @param UserServiceInterface $userService User service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
@@ -86,8 +83,8 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */
@@ -131,8 +128,8 @@ class UserController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */
@@ -141,7 +138,6 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, User $user): Response
     {
-
         $form = $this->createForm(
             UserType::class,
             $user,
@@ -171,5 +167,4 @@ class UserController extends AbstractController
             ]
         );
     }
-
 }
