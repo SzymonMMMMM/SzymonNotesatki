@@ -8,6 +8,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Note;
 use App\Entity\User;
+use App\Repository\CategoryRepository;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -15,6 +16,20 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
  */
 class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
+    /**
+     * Category repository.
+     */
+    private CategoryRepository $categoryRepository;
+
+    /**
+     * Constructor.
+     *
+     * @param CategoryRepository $categoryRepository Category repository
+     */
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
     /**
      * Load data.
      *
@@ -42,13 +57,18 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
-            /** @var Category $category */
-            $category = $this->getRandomReference('categories');
-            $note->setCategory($category);
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
             $note->setAuthor($author);
+
+            $categories = $this->categoryRepository->findBy(['author' => $author]);
+            if (count($categories) === 0) {
+                throw new \RuntimeException('No categories found for the author.');
+            }
+            /** @var Category $category */
+            $category = $this->faker->randomElement($categories);
+            $note->setCategory($category);
 
             return $note;
         });
@@ -66,6 +86,9 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [
+            CategoryFixtures::class,
+            UserFixtures::class,
+        ];
     }
 }

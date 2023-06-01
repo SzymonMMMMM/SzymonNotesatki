@@ -222,6 +222,14 @@
                 <source>title.tag_edit</source>
                 <target>Edytuj tag</target>
             </trans-unit>
+            <trans-unit id="Email">
+                <source>Email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="Password">
+                <source>Password</source>
+                <target>Hasło</target>
+            </trans-unit>
             <trans-unit id="title.tag_delete">
                 <source>title.tag_delete</source>
                 <target>Usuń tag</target>
@@ -280,7 +288,7 @@
             </trans-unit>
             <trans-unit id="label.please_sign_in">
                 <source>label.please_sign_in</source>
-                <target>Proszę zaloguj się</target>
+                <target>Logowanie</target>
             </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>

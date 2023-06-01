@@ -11,9 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use mysql_xdevapi\CollectionRemove;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Class Note.
@@ -85,7 +83,7 @@ class Note
     /**
      * Author.
      */
-        #[ORM\ManyToOne(targetEntity: User::class, cascade: ["all"], fetch: "LAZY")]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ["all"], fetch: "LAZY")]
     #[ORM\JoinColumn(name: "author_id", referencedColumnName: "id", nullable: false, onDelete: 'CASCADE')]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]

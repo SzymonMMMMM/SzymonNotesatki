@@ -10,6 +10,7 @@ use App\Service\UserServiceInterface;
 use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -139,7 +140,7 @@ class UserController extends AbstractController
     public function delete(Request $request, User $user): Response
     {
         $form = $this->createForm(
-            UserType::class,
+            FormType::class,
             $user,
             [
                 'method' => 'DELETE',

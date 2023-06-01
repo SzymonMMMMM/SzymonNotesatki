@@ -28,7 +28,7 @@ class CategoryFixtures extends AbstractBaseFixtures implements DependentFixtureI
             return;
         }
 
-        $this->createMany(20, 'categories', function () {
+        $this->createMany(50, 'categories', function () {
             $category = new Category();
             $category->setTitle($this->faker->unique()->word);
 
