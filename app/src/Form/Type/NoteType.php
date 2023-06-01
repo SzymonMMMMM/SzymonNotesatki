@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\TagsDataTransformer;
+
 /**
  * Class NoteType.
  */
@@ -29,7 +30,8 @@ class NoteType extends AbstractType
      *
      * @param TagsDataTransformer $tagsDataTransformer Tags data transformer
      */
-    public function __construct(TagsDataTransformer $tagsDataTransformer)    {
+    public function __construct(TagsDataTransformer $tagsDataTransformer)
+    {
         $this->tagsDataTransformer = $tagsDataTransformer;
     }
 

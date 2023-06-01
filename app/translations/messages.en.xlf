@@ -265,6 +265,26 @@
                 <source>title.user_list</source>
                 <target>User list</target>
             </trans-unit>
+            <trans-unit id="label.log_in">
+                <source>title.user_list</source>
+                <target>Log in!</target>
+            </trans-unit>
+            <trans-unit id="label.You_re_logged_in_as">
+                <source>label.You_re_logged_in_as</source>
+                <target>You're not logged in</target>
+            </trans-unit>
+            <trans-unit id="title.log_out">
+                <source>title.log_out</source>
+                <target>Log out</target>
+            </trans-unit>
+            <trans-unit id="label.please_sign_in">
+                <source>label.please_sign_in</source>
+                <target>Please sign in</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

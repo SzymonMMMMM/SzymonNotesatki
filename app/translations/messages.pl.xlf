@@ -266,7 +266,26 @@
                 <source>title.user_list</source>
                 <target>Lista użytkowników</target>
             </trans-unit>
-
+            <trans-unit id="label.log_in">
+                <source>label.log_in</source>
+                <target>Zaloguj sie!</target>
+            </trans-unit>
+            <trans-unit id="label.You_re_logged_in_as">
+                <source>label.You_re_logged_in_as</source>
+                <target>Nie jesteś zalogowany</target>
+            </trans-unit>
+            <trans-unit id="title.log_out">
+                <source>title.log_out</source>
+                <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="label.please_sign_in">
+                <source>label.please_sign_in</source>
+                <target>Proszę zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
