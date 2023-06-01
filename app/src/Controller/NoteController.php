@@ -107,8 +107,10 @@ class NoteController extends AbstractController
         $note->setAuthor($user);
         $form = $this->createForm(
             NoteType::class,
-            $note,
-            ['action' => $this->generateUrl('note_create')]
+            $note, [
+                'action' => $this->generateUrl('note_create'),
+                'author' => $note->getAuthor(),
+            ]
         );
         $form->handleRequest($request);
 
@@ -150,6 +152,7 @@ class NoteController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('note_edit', ['id' => $note->getId()]),
+                'author' => $note->getAuthor(),
             ]
         );
         $form->handleRequest($request);

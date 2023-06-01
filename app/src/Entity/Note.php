@@ -11,7 +11,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use mysql_xdevapi\CollectionRemove;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Class Note.
@@ -64,10 +66,10 @@ class Note
     /**
      * Category.
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'LAZY')]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: "category_id", referencedColumnName: "id", nullable: false, onDelete: 'SET NULL')]
     private ?Category $category = null;
 
     /**
@@ -83,8 +85,8 @@ class Note
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false)]
+        #[ORM\ManyToOne(targetEntity: User::class, cascade: ["all"], fetch: "LAZY")]
+    #[ORM\JoinColumn(name: "author_id", referencedColumnName: "id", nullable: false, onDelete: 'CASCADE')]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;

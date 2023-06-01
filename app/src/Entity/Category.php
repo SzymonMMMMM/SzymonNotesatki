@@ -37,8 +37,8 @@ class Category
     /**
      * Author.
      */
-    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ["all"], fetch: "LAZY")]
+    #[ORM\JoinColumn(name: "author_id", referencedColumnName: "id", nullable: false, onDelete: 'CASCADE')]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;

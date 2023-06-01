@@ -27,6 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[ORM\OneToMany(mappedBy: "author_id")]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
