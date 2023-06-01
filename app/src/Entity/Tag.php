@@ -18,6 +18,8 @@ class Tag
 {
     /**
      * Primary key.
+     *
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,6 +28,8 @@ class Tag
 
     /**
      * Title.
+     *
+     * @var string|null
      */
     #[ORM\Column(length: 64)]
     #[Assert\Type('string')]

@@ -19,6 +19,8 @@ class Category
 {
     /**
      * Primary key.
+     *
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,6 +29,8 @@ class Category
 
     /**
      * Title.
+     *
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -35,7 +39,9 @@ class Category
     private ?string $title;
 
     /**
-     * Author..
+     * Author.
+     *
+     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['all'], fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]

@@ -6,6 +6,7 @@
 namespace App\Entity;
 
 use App\Repository\NoteRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -22,6 +23,8 @@ class Note
 {
     /**
      * Primary key.
+     *
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,6 +33,8 @@ class Note
 
     /**
      * Created at.
+     *
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -38,6 +43,8 @@ class Note
 
     /**
      * Updated at.
+     *
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -46,6 +53,8 @@ class Note
 
     /**
      * Title.
+     *
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -55,6 +64,8 @@ class Note
 
     /**
      * Content.
+     *
+     * @var string|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Type('string')]
@@ -63,6 +74,8 @@ class Note
 
     /**
      * Category.
+     *
+     * @var Category|null
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'LAZY')]
     #[Assert\Type(Category::class)]
@@ -82,6 +95,8 @@ class Note
 
     /**
      * Author.
+     *
+     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['all'], fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
