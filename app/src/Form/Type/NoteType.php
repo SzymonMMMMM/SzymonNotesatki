@@ -25,6 +25,7 @@ class NoteType extends AbstractType
      * Tags data transformer.
      */
     private TagsDataTransformer $tagsDataTransformer;
+
     /**
      * Constructor.
      *

@@ -30,6 +30,7 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     {
         $this->categoryRepository = $categoryRepository;
     }
+
     /**
      * Load data.
      *
@@ -63,7 +64,7 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $note->setAuthor($author);
 
             $categories = $this->categoryRepository->findBy(['author' => $author]);
-            if (count($categories) === 0) {
+            if (0 === count($categories)) {
                 throw new \RuntimeException('No categories found for the author.');
             }
             /** @var Category $category */
