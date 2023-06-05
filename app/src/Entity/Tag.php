@@ -19,7 +19,7 @@ class Tag
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null $id ID
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,7 +29,7 @@ class Tag
     /**
      * Title.
      *
-     * @var string|null
+     * @var string|null $title Title
      */
     #[ORM\Column(length: 64)]
     #[Assert\Type('string')]

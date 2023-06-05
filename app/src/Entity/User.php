@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null $id ID
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Email.
      *
-     * @var string|null
+     * @var string|null $email email
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Roles.
      *
-     * @var array<int, string>
+     * @var array<int, string> $roles Roles
      */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Password.
      *
-     * @var string|null
+     * @var string|null $password Password
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
@@ -122,7 +122,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = UserRole::ROLE_USER->value;
 
         return array_unique($roles);

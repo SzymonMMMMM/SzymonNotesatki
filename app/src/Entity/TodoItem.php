@@ -19,8 +19,6 @@ class TodoItem
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,8 +27,6 @@ class TodoItem
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -41,27 +37,27 @@ class TodoItem
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null $CreatedAt Created at
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null $updatedAt Updated at
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     /**
      * Complete.
      *
-     * @var boolean|null
+     * @var bool|null $completed Is completed
      */
     #[ORM\Column]
     #[Assert\Type(type: 'bool')]
@@ -71,7 +67,7 @@ class TodoItem
     /**
      * Author.
      *
-     * @var User|null
+     * @var User|null $author Author
      */
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['all'], fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
@@ -112,9 +108,9 @@ class TodoItem
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -122,9 +118,9 @@ class TodoItem
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt Created at
+     * @param \DateTimeImmutable $createdAt Created at
      */
-    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    public function setCreatedAt(\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -132,9 +128,9 @@ class TodoItem
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -142,9 +138,9 @@ class TodoItem
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt Updated at
+     * @param \DateTimeImmutable $updatedAt Updated at
      */
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }

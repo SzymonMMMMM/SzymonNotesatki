@@ -20,7 +20,7 @@ class Category
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null $id ID
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,7 +30,7 @@ class Category
     /**
      * Title.
      *
-     * @var string|null
+     * @var string|null $title Title
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -41,7 +41,7 @@ class Category
     /**
      * Author.
      *
-     * @var User|null
+     * @var User|null $author Author
      */
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['all'], fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]

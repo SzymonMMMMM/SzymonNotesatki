@@ -24,7 +24,7 @@ class Note
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null $id ID
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,7 +34,7 @@ class Note
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null $CreatedAt Created at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -44,7 +44,7 @@ class Note
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null $updatedAt Updated at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -54,7 +54,7 @@ class Note
     /**
      * Title.
      *
-     * @var string|null
+     * @var string|null $title Title
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -65,7 +65,7 @@ class Note
     /**
      * Content.
      *
-     * @var string|null
+     * @var string|null $content Content
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Type('string')]
@@ -75,18 +75,18 @@ class Note
     /**
      * Category.
      *
-     * @var Category|null
+     * @var Category|null $category Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'LAZY')]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
-    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: false)]
     private ?Category $category = null;
 
     /**
      * Tags.
      *
-     * @var ArrayCollection<int, Tag>
+     * @var ArrayCollection<int, Tag> $tags Tags
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
@@ -96,7 +96,7 @@ class Note
     /**
      * Author.
      *
-     * @var User|null
+     * @var User|null $author Author
      */
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['all'], fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
