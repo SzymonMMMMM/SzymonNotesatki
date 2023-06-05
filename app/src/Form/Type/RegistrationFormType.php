@@ -8,6 +8,7 @@ namespace App\Form\Type;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -31,19 +32,18 @@ class RegistrationFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('email')
-            ->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+        $builder->add('email');
+        $builder->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options' => ['label' => 'label.password'],
+                'second_options' => ['label' => 'label.password_repeat'],
                 'constraints' => [
                     new NotBlank(),
                     new Length([
-                        'min' => 6,
-                        'max' => 4096,
+                        'max' => 255,
                     ]),
                 ],
-            ])
+        ])
         ;
     }
 

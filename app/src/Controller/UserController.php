@@ -99,6 +99,7 @@ class UserController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('user_edit', ['id' => $user->getId()]),
+                'is_edit' => true,
             ]
         );
         $form->handleRequest($request);

@@ -29,9 +29,12 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('email');
+        if (!$options['is_edit']) {
+            $builder
+                ->add('email');
+        }
         $builder->add('password', PasswordType::class, [
-            'attr' => ['maxlength' => 4096],
+            'attr' => ['maxlength' => 255],
             'required' => true,
         ]);
     }
@@ -43,7 +46,10 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => User::class]);
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'is_edit' => false,
+        ]);
     }
 
     /**

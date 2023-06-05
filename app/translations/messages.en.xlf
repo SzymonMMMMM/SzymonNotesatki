@@ -294,6 +294,10 @@
                 <source>label.password</source>
                 <target>Password</target>
             </trans-unit>
+            <trans-unit id="label.password_repeat">
+                <source>label.password_repeat</source>
+                <target>Repeat password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
