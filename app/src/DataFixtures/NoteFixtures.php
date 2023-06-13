@@ -65,7 +65,7 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 
             $categories = $this->categoryRepository->findBy(['author' => $author]);
             if (0 === count($categories)) {
-                throw new \RuntimeException('No categories found for the author.');
+                throw new \RuntimeException('No categories found for the author. Run fixtures again');
             }
             /** @var Category $category */
             $category = $this->faker->randomElement($categories);

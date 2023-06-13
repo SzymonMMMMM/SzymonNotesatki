@@ -54,10 +54,6 @@
                 <source>title.note_list</source>
                 <target>Lista notatek</target>
             </trans-unit>
-            <trans-unit id="title.note_view">
-                <source>title.note_view</source>
-                <target>Widok notatki #%id%</target>
-            </trans-unit>
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz</target>

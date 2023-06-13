@@ -26,22 +26,24 @@
             </thead>
             <tbody>
             {% for user in pagination.items %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.roles|join(', ') }}</td>
-                    <td  class="action-links">
-                        <a class="btn btn-outline-primary" href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
-                        </a>
-                        <a class="btn btn-outline-success" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
-                        <a class="btn btn-outline-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
-                    </td>
-                </tr>
+                {% if app.user.id != user.id %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles|join(', ') }}</td>
+                        <td  class="action-links">
+                            <a class="btn btn-outline-primary" href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.view'|trans }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+                            <a class="btn btn-outline-success" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                            <a class="btn btn-outline-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>
