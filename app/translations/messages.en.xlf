@@ -290,6 +290,10 @@
                 <source>label.password_repeat</source>
                 <target>Repeat password</target>
             </trans-unit>
+            <trans-unit id="title.user_edit_self">
+                <source>title.user_edit_self</source>
+                <target>Edit your account</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
