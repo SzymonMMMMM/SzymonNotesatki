@@ -41,6 +41,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public const DEFAULT_ROUTE = 'note_index';
 
     /**
+     * Admin route.
+     *
+     * @const string
+     */
+    public const ADMIN_ROUTE = 'user_index';
+
+    /**
      * URL Generator.
      */
     private UrlGeneratorInterface $urlGenerator;
@@ -123,6 +130,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
+        }
+
+        $user = $token->getUser();
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate(self::ADMIN_ROUTE));
         }
 
         return new RedirectResponse($this->urlGenerator->generate(self::DEFAULT_ROUTE));

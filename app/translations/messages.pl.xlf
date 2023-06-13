@@ -192,11 +192,11 @@
             </trans-unit>
             <trans-unit id="title.user_edit">
                 <source>title.user_edit</source>
-                <target>Edytuj użytkownika #%id%</target>
+                <target>Edytuj użytkownika: %email%</target>
             </trans-unit>
             <trans-unit id="title.user_delete">
                 <source>title.user_delete</source>
-                <target>Usuń użytkownika</target>
+                <target>Usuń użytkownika: %email%</target>
             </trans-unit>
             <trans-unit id="message.form_error">
                 <source>message.form_error</source>
