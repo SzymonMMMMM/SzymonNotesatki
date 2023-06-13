@@ -143,6 +143,7 @@ class CategoryController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('category_index');
         }
 
         $form = $this->createForm(
@@ -191,6 +192,7 @@ class CategoryController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('category_index');
         }
 
         if (!$this->categoryService->canBeDeleted($category)) {

@@ -83,7 +83,6 @@ class TodoItemController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
-
             return $this->redirectToRoute('todoitem_index');
         }
 
@@ -143,6 +142,7 @@ class TodoItemController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('todoitem_index');
         }
 
         $form = $this->createForm(
@@ -192,6 +192,7 @@ class TodoItemController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('todoitem_index');
         }
 
         $form = $this->createForm(

@@ -146,6 +146,7 @@ class NoteController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('note_index');
         }
 
         $form = $this->createForm(
@@ -166,7 +167,6 @@ class NoteController extends AbstractController
                 'success',
                 $this->translator->trans('message.edited_successfully')
             );
-
             return $this->redirectToRoute('note_index');
         }
 
@@ -195,6 +195,7 @@ class NoteController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+            return $this->redirectToRoute('note_index');
         }
 
         $form = $this->createForm(
