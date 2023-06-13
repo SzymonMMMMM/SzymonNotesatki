@@ -7,7 +7,7 @@
 ## Utworzenie projektu
 Kopiujemy do katalogu projekt
 ```bash
-  Git clone https://github.com/SzymonMMMMM/SzymonNotesatki
+  git clone https://github.com/SzymonMMMMM/SzymonNotesatki
 ```
 W PhpStorm naciskamy open i otwieramy projekt
 
