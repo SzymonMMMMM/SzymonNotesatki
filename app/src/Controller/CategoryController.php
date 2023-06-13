@@ -143,6 +143,7 @@ class CategoryController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+
             return $this->redirectToRoute('category_index');
         }
 
@@ -192,6 +193,7 @@ class CategoryController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+
             return $this->redirectToRoute('category_index');
         }
 
