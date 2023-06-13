@@ -50,10 +50,6 @@
                 <source>message.empty_list</source>
                 <target>Lista jest pusta.</target>
             </trans-unit>
-            <trans-unit id="message.note_not_found">
-                <source>message.note_not_found</source>
-                <target>Notatka nie znaleziona.</target>
-            </trans-unit>
             <trans-unit id="title.note_list">
                 <source>title.note_list</source>
                 <target>Lista notatek</target>
@@ -136,7 +132,7 @@
             </trans-unit>
             <trans-unit id="title.note_delete">
                 <source>title.note_delete</source>
-                <target>Usuń notatkę</target>
+                <target>Usuń notatkę: %title%</target>
             </trans-unit>
             <trans-unit id="title.todoItem_details">
                 <source>title.todoItem_details</source>
@@ -196,7 +192,7 @@
             </trans-unit>
             <trans-unit id="title.user_edit">
                 <source>title.user_edit</source>
-                <target>Edytuj użytkownika</target>
+                <target>Edytuj użytkownika #%id%</target>
             </trans-unit>
             <trans-unit id="title.user_delete">
                 <source>title.user_delete</source>
@@ -208,7 +204,7 @@
             </trans-unit>
             <trans-unit id="title.note_edit">
                 <source>title.note_edit</source>
-                <target>Edytuj notatki</target>
+                <target>Edycja notatki</target>
             </trans-unit>
             <trans-unit id="title.tag_details">
                 <source>title.tag_details</source>
@@ -244,15 +240,15 @@
             </trans-unit>
             <trans-unit id="title.category_create">
                 <source>title.category_create</source>
-                <target>Stwórz kategorie</target>
+                <target>Stwórz kategorię</target>
             </trans-unit>
             <trans-unit id="title.category_edit">
                 <source>title.category_edit</source>
-                <target>Edytuj kategorie</target>
+                <target>Edytuj kategorię</target>
             </trans-unit>
             <trans-unit id="title.category_delete">
                 <source>title.category_delete</source>
-                <target>Usun kategorie</target>
+                <target>Usuń kategorię</target>
             </trans-unit>
             <trans-unit id="action.register">
                 <source>action.register</source>
@@ -276,7 +272,7 @@
             </trans-unit>
             <trans-unit id="label.log_in">
                 <source>label.log_in</source>
-                <target>Zaloguj sie!</target>
+                <target>Zaloguj się!</target>
             </trans-unit>
             <trans-unit id="label.You_re_logged_in_as">
                 <source>label.You_re_logged_in_as</source>

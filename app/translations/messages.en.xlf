@@ -50,10 +50,6 @@
                 <source>message.empty_list</source>
                 <target>List is empty.</target>
             </trans-unit>
-            <trans-unit id="message.note_not_found">
-                <source>message.note_not_found</source>
-                <target>Note not found.</target>
-            </trans-unit>
             <trans-unit id="title.note_list">
                 <source>title.note_list</source>
                 <target>Notes list</target>
@@ -136,7 +132,7 @@
             </trans-unit>
             <trans-unit id="title.note_delete">
                 <source>title.note_delete</source>
-                <target>Delete note</target>
+                <target>Delete note: %title%</target>
             </trans-unit>
             <trans-unit id="title.todoItem_details">
                 <source>title.todoItem_details</source>
@@ -204,7 +200,7 @@
             </trans-unit>
             <trans-unit id="title.user_edit">
                 <source>title.user_edit</source>
-                <target>Edit user</target>
+                <target>Edit user #%id%</target>
             </trans-unit>
             <trans-unit id="title.user_delete">
                 <source>title.user_delete</source>
@@ -275,7 +271,7 @@
                 <target>User list</target>
             </trans-unit>
             <trans-unit id="label.log_in">
-                <source>title.user_list</source>
+                <source>label.log_in</source>
                 <target>Log in!</target>
             </trans-unit>
             <trans-unit id="label.You_re_logged_in_as">

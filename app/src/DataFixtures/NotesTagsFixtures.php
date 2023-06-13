@@ -20,7 +20,7 @@ class NotesTagsFixtures extends AbstractBaseFixtures implements DependentFixture
         if (null === $this->manager || null === $this->faker) {
             return;
         }
-        $this->createMany(200, 'notes_tags', function () {
+        $this->createMany(300, 'notes_tags', function () {
             $note = $this->getRandomReference('notes');
             $tag = $this->getRandomReference('tags');
 

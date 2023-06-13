@@ -54,6 +54,7 @@ class NoteController extends AbstractController
     #[Route(name: 'note_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        /** @var array $filters */
         $filters = $this->getFilters($request);
         /** @var User $user */
         $user = $this->getUser();

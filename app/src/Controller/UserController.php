@@ -115,7 +115,10 @@ class UserController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('user_index');
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('user_index');
+            }
+            return $this->redirectToRoute('note_index');
         }
 
         return $this->render(
@@ -158,7 +161,7 @@ class UserController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('user_index');
+            $this->redirectToRoute('user_index');
         }
 
         return $this->render(
