@@ -29,8 +29,8 @@
             {% for todoitem in pagination.items %}
                 <tr>
                     <td>{{ todoitem.id }}</td>
-                    <td>{{ todoitem.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ todoitem.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ todoitem.createdAt|format_date('long')}}</td>
+                    <td>{{ todoitem.updatedAt|format_date('long') }}</td>
                     <td{% if todoitem.completed %} style="text-decoration: line-through;"{% endif %}>{{ todoitem.title }}</td>
                     <td>
                         <input title="checkbox" label="checkbox" class="form-check-input" type="checkbox" {% if todoitem.completed %}checked{% endif %} disabled class="green-checkbox">

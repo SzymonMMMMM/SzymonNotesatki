@@ -13,7 +13,7 @@
             <dt>{{ 'label.created_at'|trans }}</dt>
             <dd>{{ todoitem.createdAt|format_date('long') }}</dd>
             <dt>{{ 'label.updated_at'|trans }}</dt>
-            <dd>{{ todoitem.updatedAt|date('Y/m/d') }}</dd>
+            <dd>{{ todoitem.updatedAt|format_date('long')}}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  todoitem.title }}</dd>
             <dt>{{ 'label.completed'|trans }}</dt>
